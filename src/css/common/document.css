@@ -1,0 +1,55 @@
+:root {
+  --main-background-color: #f4f4f4;
+  --quote-background-color: #242424;
+  --reminder-background-color: #fff;
+  --footer-background-color: #242424;
+  --modal-background-color: #242424;
+  --color-white: #f4f4f4;
+  --color-black: #242424;
+
+  --width-mobile: 375px;
+  --width-tablet: 768px;
+  --width-desktop: 1440px;
+
+  --spacing-base: 4px;
+  --spacing-s: 8px;
+  --spacing-m: 16px;
+  --spacing-l: 32px;
+  --spacing-xl: 64px;
+
+  --radius-xs: 12px;
+  --radius-s: 15px;
+  --radius-m: 20px;
+  --radius-l: 30px;
+  --radius-xl: 60px;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: var(--main-background-color);
+  color: var(--color-black);
+}
+
+.section {
+  width: 100vw;
+  min-width: var(--width-mobile);
+  max-width: 1440px;
+  height: min-content;
+
+  margin: 0 auto;
+  padding: calc(var(--spacing-base) * 5);
+  outline: 1px solid tomato;
+}
+
+.header {
+  height: calc(52 + var(--spacing-base) * 7 * 2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
