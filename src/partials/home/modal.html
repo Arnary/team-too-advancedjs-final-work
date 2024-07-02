@@ -1,6 +1,30 @@
-<div class="modal-backdrop">
-  <div class="modal-window">
-    <img src="./img/close-btn.svg" alt="" class="modal-close-btn" width="32" height="32" />
-    Modal
+<!-- This section is for testing purposes -->
+<div class="section">
+  <button id="modal_open_btn" type="button">Open modal</button>
+</div>
+
+<!-- Start Modal window markup -->
+<!-- should be placed at the end of the body, after all other elements -->
+<div id="modalRoot" class="modal__backdrop">
+  <div class="modal__window">
+    <img class="svg modal__close-btn" src="./img/close-btn.svg" alt="X" />
+    <div class="modal__content"></div>
   </div>
 </div>
+<!-- End Modal window markup -->
+
+<!-- This script is to show how to use ModalWindow -->
+<script type="module">
+  import { ModalWindow } from './js/utils/modalWindow';
+
+  const modalRootEl = document.getElementById('modalRoot');
+  const modal = new ModalWindow(modalRootEl);
+
+  const onShowModal = () => {
+    const modalHtmlContents = '<div>Modal opened</div>';
+
+    modal.show(modalHtmlContents);
+  };
+
+  document.getElementById('modal_open_btn').addEventListener('click', onShowModal);
+</script>
