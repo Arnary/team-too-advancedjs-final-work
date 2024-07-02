@@ -1,7 +1,4 @@
 import axios from 'axios';
-// import iziToast from 'izitoast';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import 'izitoast/dist/css/iziToast.min.css';
 const BASE_URL = 'https://your-energy.b.goit.study/api';
 
 export class axiosWrapper {
@@ -13,20 +10,20 @@ export class axiosWrapper {
     return this.request('GET', url, { params: urlParams });
   }
 
-  post(url = '', body = {}, urlParams = {}) {
-    return this.request('POST', url, { data: body, params: urlParams });
+  post(url = '', data = {}) {
+    return this.request('POST', url, { data });
   }
 
-  patch(url = '', body = {}, urlParams = {}) {
-    return this.request('POST', url, { data: body, params: urlParams });
+  patch(url = '', data = {}) {
+    return this.request('PATCH', url, { data });
   }
 
-  async request(method, url, data) {
+  request(method, url, config) {
     if ('' === url || !url) throw new Error('url is empty');
     if (!typeof url === 'string') url = String(url);
     if (url.substring(0, 1) !== '/') url = `/${url}`;
 
-    const { params = {} } = data;
+    const { params = {}, data } = config;
     const urlParams = new URLSearchParams(params).toString();
 
     return this.axios
