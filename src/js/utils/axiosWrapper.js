@@ -21,6 +21,7 @@ export class axiosWrapper {
   request(method, url, config) {
     if ('' === url || !url) throw new Error('url is empty');
     if (!typeof url === 'string') url = String(url);
+    if (url.substring(0, BASE_URL.length) === BASE_URL) url = url.substring(BASE_URL.length);
     if (url.substring(0, 1) !== '/') url = `/${url}`;
 
     const { params = {}, data } = config;
