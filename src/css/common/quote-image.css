@@ -1,0 +1,14 @@
+.quote-picture {
+  min-width: 280px;
+  max-width: 444px;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  object-fit: fill;
+
+  outline: 1px solid tomato;
+  flex-shrink: 1;
+}
