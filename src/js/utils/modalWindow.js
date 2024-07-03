@@ -64,7 +64,6 @@ export class ModalWindow {
   }
 
   onKeyPress(event) {
-    event.preventDefault();
     if (event.key === 'ArrowLeft') this.update('<div style="margin-right: auto">Left Arrow pressed</div>');
     if (event.key === 'ArrowRight') this.update('<div style="margin-left: auto">Right Arrow pressed</div>');
     if (event.key === 'ArrowUp') this.update('<div style="align-self: start">Up Arrow pressed</div>');

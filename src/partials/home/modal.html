@@ -7,8 +7,9 @@
 <!-- should be placed at the end of the body, after all other elements -->
 <div id="modalRoot" class="modal__backdrop">
   <div class="modal__window">
-    <img class="svg modal__close-btn" src="./img/close-btn.svg" alt="X" />
+    <img class="svg modal__close-btn" id="main_close_btn" src="./img/close-btn.svg" alt="X" />
     <div class="modal__content"></div>
+    <button id="give_rating_btn" type="button">Give a rating</button>
   </div>
 </div>
 <!-- End Modal window markup -->
@@ -16,15 +17,55 @@
 <!-- This script is to show how to use ModalWindow -->
 <script type="module">
   import { ModalWindow } from './js/utils/modalWindow';
+  import { axiosWrapper} from './js/utils/axiosWrapper.js';
 
   const modalRootEl = document.getElementById('modalRoot');
   const modal = new ModalWindow(modalRootEl);
 
-  const onShowModal = () => {
-    const modalHtmlContents = '<div>Modal opened</div>';
+  const ratingModalRootEl = document.getElementById('ratingModalRoot');
+  const ratingModal = new ModalWindow(ratingModalRootEl, {
+    onCloseCallback: () => {
+      initializeModal();
+    }
+  });
 
+  const initializeModal = () => {
+    const modalHtmlContents = `
+    <div>Modal opened</div>
+  `;
     modal.show(modalHtmlContents);
+    document.getElementById('give_rating_btn').addEventListener('click', openRatingModal);
   };
 
-  document.getElementById('modal_open_btn').addEventListener('click', onShowModal);
+  const openRatingModal = () => {
+    modal.close();
+    ratingModal.show();
+    document.getElementById('ratingForm').addEventListener('submit', submitRating);
+  };
+
+  const submitRating = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const rating = formData.get('rating');
+    const email = formData.get('email');
+    const comment = formData.get('comment');
+
+    const axios = new axiosWrapper();
+
+    try {
+      const data = await axios.post('/your-backend-url', { rating, email, comment });
+
+      if (data.success) {
+        ratingModal.close();
+        initializeModal();
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      alert(`Error: ${axios.describeError(error)}`);
+    }
+  };
+
+  document.getElementById('modal_open_btn').addEventListener('click', initializeModal);
 </script>
