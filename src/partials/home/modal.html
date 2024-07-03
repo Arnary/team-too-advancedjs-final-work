@@ -17,7 +17,6 @@
 <!-- This script is to show how to use ModalWindow -->
 <script type="module">
   import { ModalWindow } from './js/utils/modalWindow';
-  import { axiosWrapper} from './js/utils/axiosWrapper.js';
 
   const modalRootEl = document.getElementById('modalRoot');
   const modal = new ModalWindow(modalRootEl);
@@ -41,30 +40,6 @@
     modal.close();
     ratingModal.show();
     document.getElementById('ratingForm').addEventListener('submit', submitRating);
-  };
-
-  const submitRating = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const rating = formData.get('rating');
-    const email = formData.get('email');
-    const comment = formData.get('comment');
-
-    const axios = new axiosWrapper();
-
-    try {
-      const data = await axios.post('/your-backend-url', { rating, email, comment });
-
-      if (data.success) {
-        ratingModal.close();
-        initializeModal();
-      } else {
-        alert(`Error: ${data.message}`);
-      }
-    } catch (error) {
-      alert(`Error: ${axios.describeError(error)}`);
-    }
   };
 
   document.getElementById('modal_open_btn').addEventListener('click', initializeModal);
