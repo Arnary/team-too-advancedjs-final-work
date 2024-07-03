@@ -3,7 +3,6 @@
 
   min-width: 280px;
   max-width: 335px;
-  min-height: 209px;
 
   margin: 0;
   padding: calc(var(--spacing-base) * 5);
