@@ -1,87 +1,56 @@
 .quote-main {
+  border-radius: var(--radius-m);
+
   min-width: 280px;
-  max-width: 444px;
-  height: 100%;
+  max-width: 335px;
+  min-height: 209px;
 
   margin: 0;
   padding: calc(var(--spacing-base) * 5);
 
   display: flex;
-  flex-direction: row;
-  gap: 20px;
+  gap: 16px;
   justify-content: space-between;
   align-items: start;
 
   background-color: var(--quote-background-color);
-  border-radius: var(--radius-m);
   color: var(--color-white);
 }
 
-.quote-main--runner {
-  display: block;
-  width: 32px;
-  height: 32px;
-}
-
-.quote-main--title {
-  margin: 0 0 var(--spacing-s) 0;
-  padding: 0;
-  width: 100%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1;
-
-  white-space: nowrap;
-}
-
-.quote-main--title > * {
-  display: inline-block;
-}
-
-.quote-main--title-quotes {
+.quote-main-title-quotes {
   width: 20px;
   height: 20px;
 }
 
-.quote-main--quote {
-  margin: 0 0 var(--spacing-m) 0;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.29;
-  opacity: 0.6;
-}
-
-.quote-main--author {
+.quote-main-author {
   margin: 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.29;
 }
 
-@media screen and (min-width: 374.99px) {
+@media screen and (min-width: 767.99px) {
   .quote-main {
     max-width: 400px;
+    height: 249px;
+
     padding: calc(var(--spacing-base) * 10);
-    gap: 18px;
   }
 
-  .quote-main--title {
+  .quote-main-title {
     font-size: 24px;
     line-height: 1.33;
   }
 
-  .quote-main--author {
+  .quote-main-author {
+    font-size: 16px;
     line-height: 1.5;
   }
 }
 
-@media screen and (min-width: 767.99px) {
-  .quote-main--author {
-    font-size: 16px;
+@media screen and (min-width: 1439.99px) {
+  .quote-main {
+    max-width: 444px;
+    height: 242px;
   }
 }

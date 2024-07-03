@@ -1,29 +1,69 @@
 @import url('./quote-main.css');
 @import url('./quote-image.css');
-@import url('./quote-description.css');
+@import url('./quote-peptalk.css');
 
 .quote-wrapper {
-  /* width: 100%; */
-  width: 100%; /* REMOVE AFTER TESTING */
-  outline: 1px solid tomato;
-  padding: 20px;
+  width: 100%;
 
-  outline: 1px solid tomato;
+  margin: 0;
+  padding: 0;
 
   display: flex;
   gap: 20px;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: start;
+  justify-content: start;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1440px) {
+@media screen and (min-width: 767.99px) {
   .quote-wrapper {
-    padding: 20px 32px;
     flex-direction: row;
-    gap: 16px;
     flex-wrap: wrap;
+    justify-content: start;
+    gap: 32px 16px;
 
-    background-color: aqua;
+    width: 704px;
+  }
+}
+
+.quote-main-title,
+.quote-peptalk-title {
+  margin: 0 0 var(--spacing-s) 0;
+  padding: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.quote-main-icon,
+.quote-peptalk-icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.quote-main-quote,
+.quote-peptalk-subtitle {
+  margin: 0 0 var(--spacing-m) 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  opacity: 0.6;
+}
+
+@media screen and (min-width: 1439.99px) {
+  .quote-wrapper {
+    width: 444px;
+    gap: 32px;
+    flex-direction: column;
+    flex-wrap: nowrap;
   }
 }
