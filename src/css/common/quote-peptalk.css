@@ -60,4 +60,8 @@
     max-width: 444px;
     min-height: 315px;
   }
+
+  .quote-peptalk-description {
+    overflow: hidden;
+  }
 }
