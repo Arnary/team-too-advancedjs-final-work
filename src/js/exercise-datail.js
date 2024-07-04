@@ -3,17 +3,160 @@ import { axiosWrapper } from './utils/axiosWrapper.js';
 
 const $axios = new axiosWrapper();
 let modal = null;
+let ratingModal = null;
+
+const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
 
 class ExerciseModal extends Modal {
-  itemID;
   constructor(options) {
     super(options);
-    this.itemID = options.itemID;
+    this.itemID = null;
+  }
+
+  async open(id) {
+    this.itemID = id;
+    super.open();
+    await this.loadContent();
   }
 
   close() {
     super.close();
     this.itemID = null;
+  }
+
+  async loadContent() {
+    if (!this.itemID) return;
+
+    const favorites_list = JSON.parse(localStorage.getItem('favorites')) ?? [];
+    const isFav = favorites_list.findIndex(({ _id }) => _id === this.itemID) > -1;
+
+    try {
+      const exercise = await $axios.get(`${BASE_URL}${this.itemID}`);
+      if (Object.keys(exercise).length === 0) {
+        throw new Error('No exercise data');
+      }
+
+      exercise.isFav = isFav;
+      this.setContent(templates.modalContent(exercise));
+
+      const handler = modalBtnClickHandler(exercise);
+      this.$el.addEventListener('click', handler);
+
+      this.onHide = () => {
+        this.$el.removeEventListener('click', handler);
+      };
+    } catch (error) {
+      const errorDescription = $axios.describeError(error);
+      this.setContent(`<div style="color: red">${errorDescription}</div>`);
+    }
+  }
+
+  setContent(content) {
+    this.body = content;
+  }
+}
+
+class RatingModal extends Modal {
+  constructor(options) {
+    super(options);
+    this.originalContent = options.content;
+    this.exerciseModal = options.exerciseModal;
+    this.setContent(options.content);
+  }
+
+  setContent(content) {
+    const modalBody = this.$el.querySelector('.modal-body');
+    if (modalBody) {
+      modalBody.innerHTML = content;
+    } else {
+      console.error('Modal body not found');
+    }
+  }
+
+  open(item) {
+    this.currentItem = item;
+    super.open();
+    this.setContent(this.originalContent);
+    this.setupEventListeners();
+  }
+
+  setupEventListeners() {
+    const form = this.$el.querySelector('#ratingForm');
+    const closeBtn = this.$el.querySelector('#closeModal');
+
+    if (form) {
+      form.addEventListener('submit', this.handleSubmit.bind(this));
+    } else {
+      console.error('Rating form not found');
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', this.close.bind(this));
+    } else {
+      console.error('Close button not found');
+    }
+
+    this.setupStarRating();
+  }
+
+  setupStarRating() {
+    const stars = this.$el.querySelectorAll('.modal__rating-star');
+    const ratingValue = this.$el.querySelector('.modal__rating-value');
+
+    stars.forEach((star, index) => {
+      star.addEventListener('mouseover', () => this.highlightStars(stars, index));
+      star.addEventListener('mouseout', () => this.resetStars(stars));
+      star.addEventListener('click', () => this.setRating(stars, index, ratingValue));
+    });
+  }
+
+  highlightStars(stars, index) {
+    stars.forEach((star, i) => {
+      star.classList.toggle('active', i <= index);
+    });
+  }
+
+  resetStars(stars) {
+    const selectedIndex = Array.from(stars).findIndex(star => star.querySelector('input').checked);
+    stars.forEach((star, i) => {
+      star.classList.toggle('active', i <= selectedIndex && selectedIndex !== -1);
+    });
+  }
+
+  setRating(stars, index, ratingValue) {
+    stars.forEach((star, i) => {
+      star.classList.toggle('active', i <= index);
+      star.querySelector('input').checked = (i === index);
+    });
+    ratingValue.textContent = (index + 1).toFixed(1);
+  }
+
+  async handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const rating = formData.get('rating');
+    const email = formData.get('email');
+    const comment = formData.get('comment');
+
+    try {
+      await $axios.patch(`${BASE_URL}${this.currentItem._id}/rating`, {
+        rate: Number(rating),
+        email,
+        review: comment
+      });
+      this.close();
+      this.exerciseModal.open(this.currentItem._id);
+    } catch (error) {
+      console.error('Error submitting rating:', error);
+    }
+  }
+
+  close() {
+    super.close();
+    if (this.exerciseModal && this.currentItem) {
+      this.exerciseModal.open(this.currentItem._id);
+    }
+    this.currentItem = null;
   }
 }
 
@@ -118,15 +261,40 @@ const lsToggleFavItem = item => {
 
 const modalBtnClickHandler = item => {
   return event => {
-    if ('favAdd' in event.target.dataset || 'favDel' in event.target.dataset) {
+    const target = event.target.closest('button');
+    if (!target) {
+      console.log('No button target found');
+      return;
+    }
+
+    if (target.dataset.favAdd || target.dataset.favDel) {
       lsToggleFavItem(item);
       const actionsRef = modal?.$el.querySelector('.modal-action');
 
       if (!!actionsRef) {
         actionsRef.innerHTML = templates.detailActionBtnsTemplate(item.isFav);
       }
+    } else if (target.hasAttribute('data-rating')) {
+      showRatingModal(item);
+    } else {
+      console.log('Unknown button clicked');
     }
   };
+};
+
+const showRatingModal = (item) => {
+  if (!ratingModal) {
+    const modalRoot = document.getElementById('ratingModalRoot');
+    if (!modalRoot) {
+      return;
+    }
+    ratingModal = new RatingModal({
+      className: 'modal__window_rating',
+      content: modalRoot.querySelector('.modal-body').innerHTML,
+      exerciseModal: modal
+    });
+  }
+  ratingModal.open(item);
 };
 
 export default async () => {
@@ -141,34 +309,7 @@ export default async () => {
     }
     const { exerciseId: id } = event.target.dataset;
 
-    modal.itemID = id;
-
-    const favorites_list = JSON.parse(localStorage.getItem('favorites')) ?? [];
-    const isFav = favorites_list.findIndex(({ _id }) => _id === id) > -1;
-
-    // modal.body = 'Some loader >>>';
-    modal.open();
-
-    try {
-      const exercise = await $axios.get(`${BASE_URL}${id}`);
-      if (Object.keys(exercise).length === 0) {
-        throw new Error();
-      }
-
-      exercise.isFav = isFav;
-      modal.body = templates.modalContent(exercise);
-
-      const handler = modalBtnClickHandler(exercise);
-      modal.$el.addEventListener('click', handler);
-
-      modal.onHide = () => {
-        modal.$el.removeEventListener('click', handler);
-      };
-    } catch (error) {
-      const errorDescription = $axios.describeError(error);
-      console.error(errorDescription);
-      modal.body = `<div style="color: red">${errorDescription}</div>`;
-    }
+    modal.open(id);
   });
 
   return { modal };
