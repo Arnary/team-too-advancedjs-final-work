@@ -30,7 +30,7 @@
 
 .modal-container {
   position: relative;
-  margin: 0 auto;
+  margin: auto;
   background: var(--color-black);
   border-radius: 20px;
   padding: 40px 20px;
@@ -73,9 +73,6 @@
   cursor: pointer;
 }
 
-@media (min-width: 1440px) {
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -98,21 +95,25 @@
 
 @keyframes slideIn {
   from {
-    transform: translateY(-50px);
+    transform: translateY(-10px);
+    opacity: 0;
   }
 
   to {
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes slideOut {
   from {
     transform: translateY(0);
+    opacity: 1;
   }
 
   to {
-    transform: translateY(-50px);
+    transform: translateY(-10px);
+    opacity: 0;
   }
 }
 
@@ -123,12 +124,17 @@
   justify-content: start;
   color: #f4f4f4;
   gap: 2px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-white);
 }
 
 .rating .icon {
   width: 18px;
   height: 18px;
   fill: rgba(244, 244, 244, 0.2);
+  padding: 2px;
 }
 
 .rating .icon.filled {
@@ -184,7 +190,7 @@
 }
 
 .exercise-detail .modal-action {
-  margin-top: 20px;
+  margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -208,6 +214,7 @@
 
 .exercise-detail .char-item .title {
   font-size: 12px;
+  font-weight: 400;
   line-height: 1.5;
   color: rgba(244, 244, 244, 0.4);
 }

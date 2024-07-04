@@ -24,11 +24,10 @@ const capitalize = (str = '') => {
 
 const templates = {
   ratingTemplate: rating => {
-    rating = Number(rating);
     const icons = [...Array(5).keys()]
       .map(i => {
         return `
-          <svg class="icon${i + 1 < rating ? ' filled' : ''}">
+          <svg class="icon${i + 1 <= rating ? ' filled' : ''}">
             <use href="./img/icons.svg#icon-star"></use>
           </svg>`;
       })
@@ -36,7 +35,7 @@ const templates = {
 
     return `
       <div class="rating">
-        <div class="rating-value">${rating}</div>
+        <div class="rating-value">${rating.toFixed(1)}</div>
         ${icons}
       </div>
     `;

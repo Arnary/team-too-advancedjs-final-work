@@ -79,6 +79,8 @@ export default class Modal {
   open() {
     this.$el.classList.remove('hide');
     this.$el.classList.add('show');
+    const modalContainer = this.$el.querySelector('.modal-container');
+    modalContainer.classList.remove('hide');
     this.initEvents();
     if (typeof this.onOpen === 'function') {
       this.onOpen();
@@ -87,14 +89,13 @@ export default class Modal {
 
   close() {
     const modalContainer = this.$el.querySelector('.modal-container');
-    modalContainer.classList.add('hide');
     this.$el.classList.add('hide');
-
     this.$el.addEventListener(
       'animationend',
       () => {
         if (this.$el.classList.contains('hide')) {
           this.$el.classList.remove('show');
+          modalContainer.classList.add('hide');
           if (typeof this.onHide === 'function') {
             this.onHide();
           }
