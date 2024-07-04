@@ -1,5 +1,8 @@
-import axios from 'axios';
 import Modal from './Modal.class.js';
+import { axiosWrapper } from './utils/axiosWrapper.js';
+
+const $axios = new axiosWrapper();
+let modal = null;
 
 class DetailModal extends Modal {
   itemID;
@@ -8,8 +11,6 @@ class DetailModal extends Modal {
     this.itemID = options.itemID;
   }
 }
-
-let modal = null;
 
 const capitalize = (str = '') => {
   str = str.toString();
@@ -130,22 +131,27 @@ export default async () => {
 
   const exerciseList = document.querySelector('.exercise-list');
 
-  exerciseList.addEventListener('click', async function (event) {
+  exerciseList.addEventListener('click', async event => {
     if (!event.target.dataset.exerciseId) {
       return;
     }
     const { exerciseId: id } = event.target.dataset;
+
     modal.itemID = id;
+
     const favorites_list = JSON.parse(localStorage.getItem('favorites')) ?? [];
     const isFav = favorites_list.findIndex(({ _id }) => _id === id) > -1;
 
+    // modal.body = 'Some loader >>>';
     modal.open();
 
     try {
-      const exercise = await axios.get(`${BASE_URL}${id}`).then(res => {
-        return { ...res.data, isFav };
-      });
+      const exercise = await $axios.get(`${BASE_URL}${id}`);
+      if (Object.keys(exercise).length === 0) {
+        throw new Error();
+      }
 
+      exercise.isFav = isFav;
       modal.body = templates.modalContent(exercise);
 
       const handler = modalBtnClickHandler(exercise);
@@ -155,7 +161,9 @@ export default async () => {
         modal.$el.removeEventListener('click', handler);
       };
     } catch (error) {
-      console.error(error);
+      const errorDescription = $axios.describeError(error);
+      console.error(errorDescription);
+      modal.body = `<div style="color: red">${errorDescription}</div>`;
     }
   });
 
