@@ -1,6 +1,6 @@
 import { axiosWrapper } from './utils/axiosWrapper';
 
-import initModalDetail from './exercise-datail';
+import ExerciseDetailInit from './exercise-datail';
 
 const axios = new axiosWrapper();
 const params = { bodypart: 'cardio', page: 1, limit: 10 };
@@ -13,4 +13,18 @@ axios
     console.log(errorDescription);
   });
 
-initModalDetail();
+const { modal } = await ExerciseDetailInit();
+
+/**
+ * exsamples
+ *
+ * */
+modal.$el.addEventListener('click', event => {
+  console.log('inside modal click event');
+});
+
+modal.onhide = () => {
+  console.log('hide event');
+  // get current item id
+  const id = modal.itemId();
+};

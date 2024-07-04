@@ -28,28 +28,33 @@
   flex-wrap: nowrap;
 }
 
-.modal-content {
+.modal-container {
   position: relative;
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-
   margin: 0 auto;
-  background: #242424;
+  background: var(--color-black);
   border-radius: 20px;
-  padding: 20px;
+  padding: 40px 20px;
   width: 335px;
   max-width: 100vw;
+  max-height: 90%;
+  overflow: hidden;
   animation: slideIn 0.5s;
 }
 
-.modal-content.hide {
+.modal-container.hide {
   animation: slideOut 0.5s forwards;
 }
 
+.modal-body {
+  overflow: auto;
+}
+
 .modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
   color: #aaa;
-  float: right;
+  display: inline-flex;
   font-weight: bold;
   cursor: pointer;
   margin-left: auto;
@@ -57,8 +62,8 @@
 
 .modal-close-btn .icon {
   stroke: #ffffff;
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
 }
 
 .modal-close-btn:hover,
@@ -66,6 +71,9 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media (min-width: 1440px) {
 }
 
 @keyframes fadeIn {
@@ -105,5 +113,152 @@
 
   to {
     transform: translateY(-50px);
+  }
+}
+
+/* ratting */
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  color: #f4f4f4;
+  gap: 2px;
+}
+
+.rating .icon {
+  width: 18px;
+  height: 18px;
+  fill: rgba(244, 244, 244, 0.2);
+}
+
+.rating .icon.filled {
+  fill: #eea10c;
+}
+
+/* exercise-detail */
+.exercise-detail {
+  --text-muted: rgba(244, 244, 244, 0.6);
+}
+
+.exercise-detail .card {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.exercise-detail .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.exercise-detail .card-img {
+  border-radius: 12px;
+  max-height: 258px;
+  width: 100%;
+  object-fit: cover;
+  /* object-position: bottom; */
+}
+
+.exercise-detail hr {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: rgba(244, 244, 244, 0.2);
+}
+
+.exercise-detail .modal-title {
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.exercise-detail p {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+}
+
+.exercise-detail .modal-action {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.exercise-detail .modal-action .btn {
+  width: 100%;
+}
+
+.exercise-detail .char-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.exercise-detail .char-item {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exercise-detail .char-item .title {
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(244, 244, 244, 0.4);
+}
+
+.exercise-detail .char-item .description {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: #f4f4f4;
+}
+
+@media (min-width: 768px) {
+  .modal-container {
+    width: 708px;
+  }
+
+  .modal .modal-body .card {
+    display: flex;
+  }
+
+  .modal-close-btn {
+    top: 24px;
+    right: 24px;
+  }
+
+  .modal-close-btn .icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .modal-container {
+    padding: 32px;
+  }
+
+  .exercise-detail .modal-title {
+    font-size: 24px;
+  }
+
+  .exercise-detail .card {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 32px;
+  }
+
+  .exercise-detail .modal-action {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    margin-top: 64px;
+  }
+
+  .exercise-detail .modal-action .btn {
+    width: auto;
   }
 }
