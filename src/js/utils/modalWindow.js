@@ -3,9 +3,9 @@ export class ModalWindow {
   onCloseCallback = null;
   modalContents = '';
 
-  modalContentElement = document.querySelector('.modal__content');
-  closeButtonElement = document.querySelector('.modal__close-btn');
-  backdropElement = document.querySelector('.modal__backdrop');
+  modalContentElement = document.querySelector('.modal-content');
+  closeButtonElement = document.querySelector('.modal-close-btn');
+  backdropElement = document.querySelector('.modal-backdrop');
 
   onKeyPressBound = this.onKeyPress.bind(this);
   onCloseBound = this.onMouseClick.bind(this);
