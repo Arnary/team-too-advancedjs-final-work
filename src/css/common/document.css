@@ -23,8 +23,6 @@
   --radius-l: 30px;
   --radius-xl: 60px;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
@@ -45,6 +43,24 @@ body {
   margin: 0 auto;
   padding: calc(var(--spacing-base) * 5);
   outline: 1px solid tomato;
+}
+
+@media screen and (min-width: 375px) {
+  .section {
+    max-width: 375px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    max-width: 768px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .section {
+    max-width: 1440px;
+  }
 }
 
 .header {
