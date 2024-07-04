@@ -2,8 +2,12 @@ import { axiosWrapper } from './utils/axiosWrapper';
 
 import ExerciseDetailInit from './exercise-datail';
 
+import { fetchAndRenderExercisesList } from './exercise-list';
+
 const axios = new axiosWrapper();
 const params = { bodypart: 'cardio', page: 1, limit: 10 };
+
+fetchAndRenderExercisesList(params);
 
 axios
   .get('exercises', params)
