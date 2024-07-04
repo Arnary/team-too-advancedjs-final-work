@@ -3,6 +3,8 @@ export default class Modal {
   #header;
   #body;
   #className = 'modal';
+  onHide = null;
+  onOpen = null;
 
   constructor({ body = '', header = '', className = null } = {}) {
     this.#header = header;
@@ -11,7 +13,6 @@ export default class Modal {
 
     Modal.count++;
     this.render();
-    this.initEvents();
   }
 
   get id() {
@@ -49,20 +50,39 @@ export default class Modal {
   }
 
   initEvents() {
-    const closeBtn = this.$el.querySelector('.modal-close-btn');
+    this.closeHandler = this.close.bind(this);
+    this.outsideClickHandler = event => {
+      if (event.target === this.$el) {
+        this.close();
+      }
+    };
 
-    closeBtn.addEventListener('click', this.close.bind(this));
-    window.addEventListener('click', this.outsideClick.bind(this));
-    window.addEventListener('keydown', this.escapeKey.bind(this));
-    // closeBtn.addEventListener('click', this.close);
-    // window.addEventListener('click', this.outsideClick);
-    // window.addEventListener('keydown', this.escapeKey);
+    this.escapeKeyHandler = event => {
+      if (event.key === 'Escape') {
+        this.close();
+      }
+    };
+
+    const closeBtn = this.$el.querySelector('.modal-close-btn');
+    closeBtn.addEventListener('click', this.closeHandler);
+    window.addEventListener('click', this.outsideClickHandler);
+    window.addEventListener('keydown', this.escapeKeyHandler);
+  }
+
+  removeEvents() {
+    const closeBtn = this.$el.querySelector('.modal-close-btn');
+    closeBtn.removeEventListener('click', this.closeHandler);
+    window.removeEventListener('click', this.outsideClickHandler);
+    window.removeEventListener('keydown', this.escapeKeyHandler);
   }
 
   open() {
     this.$el.classList.remove('hide');
     this.$el.classList.add('show');
-    console.log('open', this.$el.classList);
+    this.initEvents();
+    if (typeof this.onOpen === 'function') {
+      this.onOpen();
+    }
   }
 
   close() {
@@ -75,29 +95,14 @@ export default class Modal {
       () => {
         if (this.$el.classList.contains('hide')) {
           this.$el.classList.remove('show');
-          if (typeof this.onhide === 'function') {
-            this.onhide();
-            this.body = '';
+          if (typeof this.onHide === 'function') {
+            this.onHide();
           }
+          this.removeEvents();
+          this.body = '';
         }
       },
       { once: true }
     );
-  }
-
-  destroy() {
-    this.$el.remove();
-  }
-
-  outsideClick(event) {
-    if (event.target === this.$el) {
-      this.close();
-    }
-  }
-
-  escapeKey(event) {
-    if (event.key === 'Escape') {
-      this.close();
-    }
   }
 }

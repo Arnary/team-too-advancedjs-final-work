@@ -13,18 +13,16 @@ axios
     console.log(errorDescription);
   });
 
+// ExerciseDetail
 const { modal } = await ExerciseDetailInit();
-
 /**
  * exsamples
  *
  * */
-modal.$el.addEventListener('click', event => {
-  console.log('inside modal click event');
-});
-
-modal.onhide = () => {
-  console.log('hide event');
-  // get current item id
-  const id = modal.itemId();
+modal.onOpen = event => {
+  console.log('modal opened', modal.itemID);
 };
+
+modal.$el.addEventListener('click', event => {
+  console.log('modal click event', modal.itemID);
+});

@@ -1,0 +1,70 @@
+@import url('./quote-main.css');
+@import url('./quote-image.css');
+@import url('./quote-peptalk.css');
+
+.quote-wrapper {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+@media screen and (min-width: 767.99px) {
+  .quote-wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 32px 16px;
+
+    width: 704px;
+  }
+}
+
+.quote-main-title,
+.quote-peptalk-title {
+  margin: 0 0 var(--spacing-s) 0;
+  padding: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+.quote-main-icon,
+.quote-peptalk-icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.quote-main-quote,
+.quote-peptalk-subtitle {
+  margin: 0 0 var(--spacing-m) 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  opacity: 0.6;
+}
+
+@media screen and (min-width: 1439.99px) {
+  .quote-wrapper {
+    width: 444px;
+    gap: 32px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}
