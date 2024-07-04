@@ -4,11 +4,16 @@ import { axiosWrapper } from './utils/axiosWrapper.js';
 const $axios = new axiosWrapper();
 let modal = null;
 
-class DetailModal extends Modal {
+class ExerciseModal extends Modal {
   itemID;
   constructor(options) {
     super(options);
     this.itemID = options.itemID;
+  }
+
+  close() {
+    super.close();
+    this.itemID = null;
   }
 }
 
@@ -127,7 +132,7 @@ const modalBtnClickHandler = item => {
 
 export default async () => {
   const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
-  modal = new DetailModal({ className: 'exercise-detail' });
+  modal = new ExerciseModal({ className: 'exercise-detail' });
 
   const exerciseList = document.querySelector('.exercise-list');
 
