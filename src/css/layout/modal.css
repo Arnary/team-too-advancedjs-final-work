@@ -85,6 +85,8 @@
   align-items: center;
   gap: 2px;
   margin-bottom: 32px;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 
 .modal__rating-star input[type="radio"] {
@@ -95,12 +97,12 @@
   cursor: pointer;
 }
 
-.modal__rating-stars label svg path {
+.modal__rating-star label svg path {
   transition: fill 0.3s ease, fill-opacity 0.3s ease;
 }
 
-.modal__rating-star:hover label svg path,
-.modal__rating-star:hover ~ .modal__rating-star label svg path {
+.modal__rating-star.active label svg path,
+.modal__rating-star:hover label svg path {
   fill: #ffd700;
   fill-opacity: 1;
 }
@@ -126,7 +128,6 @@
   margin-bottom: 32px;
   border-radius: 15px;
   height: 106px;
-  overflow-y: scroll;
 }
 
 .modal__rating-submit {

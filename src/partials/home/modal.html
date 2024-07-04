@@ -17,6 +17,9 @@
 <!-- This script is to show how to use ModalWindow -->
 <script type="module">
   import { ModalWindow } from './js/utils/modalWindow';
+  import {axiosWrapper} from './js/utils/axiosWrapper.js';
+  import iziToast from 'izitoast';
+  import 'izitoast/dist/css/iziToast.min.css';
 
   const modalRootEl = document.getElementById('modalRoot');
   const modal = new ModalWindow(modalRootEl);
@@ -41,6 +44,50 @@
     ratingModal.show();
     document.getElementById('ratingForm').addEventListener('submit', submitRating);
   };
+
+  const submitRating = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const rating = formData.get('rating');
+    const email = formData.get('email');
+    const comment = formData.get('comment');
+
+    const axios = new axiosWrapper();
+
+    try {
+      const data = await axios.post('/some-bknd-url', { rating, email, comment });
+
+      if (data.success) {
+        iziToast.success({
+          title: 'Success',
+          message: 'Your rating has been submitted successfully!',
+          position: 'topRight',
+          timeout: 5000
+        });
+        ratingModal.close();
+        initializeModal();
+      } else {
+        iziToast.error({
+          title: 'Error',
+          message: 'An error occurred while submitting your rating.',
+          position: 'topRight',
+          timeout: 5000
+        });
+      }
+    } catch (error) {
+      iziToast.error({
+        title: 'Error',
+        message: axios.describeError(error) || 'An unexpected error occurred.',
+        position: 'topRight',
+        timeout: 5000
+      });
+    }
+  };
+
+  document.getElementById('rating_close_btn').addEventListener('click', () => {
+    ratingModal.close();
+  });
 
   document.getElementById('modal_open_btn').addEventListener('click', initializeModal);
 </script>

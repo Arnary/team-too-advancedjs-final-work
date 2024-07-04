@@ -4,8 +4,6 @@
     <form id="ratingForm">
       <h3 class="modal__rating-title">Rating</h3>
       <div class="modal__rating">
-        <span class="modal__rating-value">0.0</span>
-
         <div class="modal__rating-star">
           <input type="radio" id="star1" name="rating" value="1" required>
           <label for="star1">
@@ -56,6 +54,8 @@
             </svg>
           </label>
         </div>
+
+        <span class="modal__rating-value">0.0</span>
       </div>
 
       <input type="email" id="email" name="email" placeholder="Email" class="modal__rating-field"
@@ -69,59 +69,34 @@
 </div>
 
 <script type="module">
-  import {ModalWindow} from './js/utils/modalWindow';
-  import {axiosWrapper} from './js/utils/axiosWrapper.js';
+  const ratingContainer = document.querySelector('.modal__rating');
+  const stars = Array.from(ratingContainer.querySelectorAll('.modal__rating-star'));
+  const ratingValue = ratingContainer.querySelector('.modal__rating-value');
 
-  const modalRootEl = document.getElementById('modalRoot');
-  const modal = new ModalWindow(modalRootEl, {
-    closeButtonSelector: '#main_close_btn',
+  stars.forEach((star, index) => {
+    star.addEventListener('mouseenter', () => highlightStars(index));
+    star.addEventListener('mouseleave', () => resetStars());
+    star.addEventListener('click', () => selectStars(index));
   });
 
-  const ratingModalRootEl = document.getElementById('ratingModalRoot');
-  const ratingModal = new ModalWindow(ratingModalRootEl, {
-    closeButtonSelector: '#rating_close_btn',
-    onCloseCallback: () => {
-      initializeModal();
-    }
-  });
+  function highlightStars(index) {
+    stars.forEach((star, i) => {
+      star.classList.toggle('active', i >= index);
+    });
+  }
 
-  const initializeModal = () => {
-    const modalHtmlContents = '<div>Modal opened</div>';
-    modal.show(modalHtmlContents);
-    document.getElementById('give_rating_btn').addEventListener('click', openRatingModal);
-  };
+  function resetStars() {
+    const selectedIndex = stars.findIndex(star => star.querySelector('input').checked);
+    stars.forEach((star, i) => {
+      star.classList.toggle('active', i >= selectedIndex && selectedIndex !== -1);
+    });
+  }
 
-  const openRatingModal = () => {
-    modal.close();
-    ratingModal.show();
-    document.getElementById('ratingForm').addEventListener('submit', submitRating);
-  };
-
-  const submitRating = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const rating = formData.get('rating');
-    const email = formData.get('email');
-    const comment = formData.get('comment');
-
-    const axios = new axiosWrapper();
-
-    try {
-      const data = await axios.post('/some-bknd-url', { rating, email, comment });
-
-      if (data.success) {
-        ratingModal.close();
-        initializeModal();
-      } else {
-        alert(`Error: ${data.message}`);
-      }
-    } catch (error) {
-      alert(`Error: ${axios.describeError(error)}`);
-    }
-  };
-
-  document.getElementById('rating_close_btn').addEventListener('click', () => {
-    ratingModal.close();
-  });
+  function selectStars(index) {
+    stars.forEach((star, i) => {
+      star.classList.toggle('active', i >= index);
+      star.querySelector('input').checked = (i === index);
+    });
+    ratingValue.textContent = (5 - index).toFixed(1);
+  }
 </script>
