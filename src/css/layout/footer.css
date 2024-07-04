@@ -1,0 +1,15 @@
+.footer {
+    background-color: var(--quote-background-color);
+}
+
+
+.copyright,
+.copyright-legal {
+    color: #c6cdd1;
+}
+
+
+.header-social img{
+    fill: #07e4f0; 
+}
+
