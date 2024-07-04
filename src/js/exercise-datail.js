@@ -128,9 +128,9 @@ export default async () => {
   const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
   modal = new DetailModal({ className: 'exercise-detail' });
 
-  const exerciseItems = document.querySelector('.exercise-list');
+  const exerciseList = document.querySelector('.exercise-list');
 
-  exerciseItems.addEventListener('click', async function (event) {
+  exerciseList.addEventListener('click', async function (event) {
     if (!event.target.dataset.exerciseId) {
       return;
     }
