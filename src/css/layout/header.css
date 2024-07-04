@@ -1,3 +1,16 @@
+/* General styles */
+body {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header styles */
 .header-container {
   display: flex;
   align-items: center;
@@ -6,11 +19,16 @@
 }
 
 .header__logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
   transition: all var(--animation);
 }
 
 .header__logo-text {
   display: none;
+  margin-left: 10px;
+  font-weight: bold;
 }
 
 .header__logo:hover,
@@ -27,7 +45,7 @@
 
 @media screen and (min-width: 1440px) {
   .header-container {
-    padding: 28px 9px 96px;
+    padding: 28px 20px 96px;
   }
 }
 
@@ -91,8 +109,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     padding: 8px;
     border: 1px solid rgba(36, 36, 36, 0.1);
     border-radius: 10px;
@@ -104,6 +122,8 @@
   .header__socials-icon {
     fill: rgba(36, 36, 36, 0.8);
     transition: all var(--animation);
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -114,7 +134,6 @@
 
 .header__socials-link:hover .header__socials-icon,
 .header__socials-link:focus .header__socials-icon {
-  stroke: var(--color-white);
   fill: var(--color-white);
 }
 
@@ -144,12 +163,13 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 100vw;
+  width: 50vw; /* Set to half of the viewport width */
   height: 100%;
   padding: 20px;
   background-color: var(--color-black);
   z-index: 999;
   transform: translateX(100%);
+  transition: transform 0.3s ease-in-out; /* Add transition for smoother opening */
 }
 
 .menu-container.is-open {
@@ -199,8 +219,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   padding: 8px;
   border: 1px solid rgba(244, 244, 244, 0.1);
   border-radius: 10px;

@@ -63,6 +63,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!favoritesButton.classList.contains('active')) {
       favoritesButton.classList.add('active');
       homeButton.classList.remove('active');
+      // Перенаправлення на сторінку "Favorites"
+      window.location.href = './favorites.html';
       // Додаткові дії, якщо потрібно
     }
   });
