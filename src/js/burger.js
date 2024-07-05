@@ -1,20 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const homeButton = document.getElementById('homeButton');
-  const favoritesButton = document.getElementById('favoritesButton');
-
-  homeButton.addEventListener('click', () => {
-    console.log('Home button clicked');
-    homeButton.classList.add('active');
-    favoritesButton.classList.remove('active');
-  });
-
-  favoritesButton.addEventListener('click', () => {
-    console.log('Favorites button clicked');
-    favoritesButton.classList.add('active');
-    homeButton.classList.remove('active');
-  });
-});
-
 const openMenuButton = document.querySelector('.js-open-menu');
 const closeMenuButton = document.querySelector('.js-close-menu');
 const mobileMenu = document.querySelector('#mobile-menu');
@@ -53,7 +36,19 @@ menuNavLinks.forEach(link => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+const mediaQuery = window.matchMedia('(min-width: 768px)');
+
+function handleTabletDesktopChange(e) {
+  if (e.matches) {
+    // При зміні на планшетний або десктопний розмір
+    closeMobileMenu();
+  }
+}
+
+mediaQuery.addListener(handleTabletDesktopChange);
+handleTabletDesktopChange(mediaQuery); // Виклик один раз під час ініціалізації
+
+document.addEventListener('DOMContentLoaded', function () {
   const currentPath = window.location.pathname;
   const homeButton = document.getElementById('homeButton');
   const favoritesButton = document.getElementById('favoritesButton');
