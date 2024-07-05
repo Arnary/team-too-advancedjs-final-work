@@ -4,10 +4,6 @@ body {
   background-color: var(--color-white);
 }
 
-.header > * {
-  outline: 1px solid tomato;
-}
-
 .container {
   width: 100%;
   padding: 0 20px;

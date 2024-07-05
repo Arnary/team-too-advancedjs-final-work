@@ -41,11 +41,6 @@ closeMenuButton.addEventListener('click', () => {
   closeMobileMenu();
 });
 
-// Видалено обробник кліку для backdrop
-// backdrop.addEventListener('click', () => {
-//   closeMobileMenu();
-// });
-
 menuNavLinks.forEach(link => {
   link.addEventListener('click', () => {
     const targetId = link.getAttribute('href').substring(1);
@@ -53,7 +48,7 @@ menuNavLinks.forEach(link => {
 
     if (targetSection) {
       targetSection.scrollIntoView({ behavior: 'smooth' });
-      closeMobileMenu(); // Можна залишити, якщо хочете закривати меню при кліку на посилання
+      closeMobileMenu();
     }
   });
 });
@@ -88,4 +83,4 @@ const handleClick = event => {
   if (event.currentTarget === favoritesButton) {
     homeButton.classList.remove('active');
   }
-};
+}
