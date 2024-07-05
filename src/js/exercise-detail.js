@@ -85,18 +85,16 @@ const templates = {
     return `<div class="card">
         <img class="card-img" src="${gifUrl}" alt="${title}">
         <div class="card-body">
-          <h3 class="modal-title">${title}</h3>
+          <div class="card-header">
+            <h3 class="card-title">${title}</h3>
             ${templates.ratingTemplate(rating)}
-          <hr/>
+          </div>
           <ul class="char-list">
             ${charListTemplate}
           </ul>
-          <hr/>
-          <p>${description}</p>
+          <p class="char-info">${description}</p>
+
         </div>
-      </div>
-      <div class="modal-action">
-        ${templates.detailActionBtnsTemplate(isFav)}
       </div>`;
   },
 };
@@ -120,7 +118,7 @@ const modalBtnClickHandler = item => {
   return event => {
     if ('favAdd' in event.target.dataset || 'favDel' in event.target.dataset) {
       lsToggleFavItem(item);
-      const actionsRef = modal?.$el.querySelector('.modal-action');
+      const actionsRef = modal?.$el.querySelector('.modal-actions');
 
       if (!!actionsRef) {
         actionsRef.innerHTML = templates.detailActionBtnsTemplate(item.isFav);
@@ -129,16 +127,17 @@ const modalBtnClickHandler = item => {
   };
 };
 
-export default async () => {
+const initDetail = async () => {
   const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
   modal = new ExerciseModal({ className: 'exercise-detail' });
 
-  const exerciseList = document.querySelector('.exercise-list');
+  const exerciseList = document.querySelector('#exercises-list');
 
   exerciseList.addEventListener('click', async event => {
     if (!event.target.dataset.exerciseId) {
       return;
     }
+
     const { exerciseId: id } = event.target.dataset;
 
     modal.itemID = id;
@@ -157,6 +156,7 @@ export default async () => {
 
       exercise.isFav = isFav;
       modal.body = templates.modalContent(exercise);
+      modal.actions = templates.detailActionBtnsTemplate(isFav);
 
       const handler = modalBtnClickHandler(exercise);
       modal.$el.addEventListener('click', handler);
@@ -173,3 +173,5 @@ export default async () => {
 
   return { modal };
 };
+
+export { initDetail, lsToggleFavItem };
