@@ -133,12 +133,14 @@ export default async () => {
   const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
   modal = new ExerciseModal({ className: 'exercise-detail' });
 
-  const exerciseList = document.querySelector('.exercise-list');
+  const exerciseList = document.querySelector('#exercises-block');
 
   exerciseList.addEventListener('click', async event => {
+
     if (!event.target.dataset.exerciseId) {
       return;
     }
+
     const { exerciseId: id } = event.target.dataset;
 
     modal.itemID = id;
