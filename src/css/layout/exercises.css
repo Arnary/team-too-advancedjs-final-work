@@ -93,7 +93,6 @@
   }
 }
 
-
 /* Search form */
 
 .exercises-search-form {
@@ -161,7 +160,6 @@
   border: none;
   background-color: transparent;
 }
-
 
 .exercises-search-clear-btn {
   position: absolute;
@@ -238,7 +236,6 @@
   }
 }
 
-
 /* exercises grip */
 .exercises-container {
   display: flex;
@@ -267,7 +264,6 @@
     order: 2;
   }
 }
-
 
 /* exercises styles */
 .exercises-categories-list {
@@ -372,7 +368,6 @@
   }
 }
 
-
 /* pagination styles */
 .pagination {
   display: flex;
@@ -380,6 +375,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  margin-top: auto;
 }
 
 .pagination-button {
@@ -402,4 +398,10 @@
   border-radius: 50%;
   border: 1px solid var(--color-black);
   color: var(--color-black);
+}
+
+#exercises-block {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 }

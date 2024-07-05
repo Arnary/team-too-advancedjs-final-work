@@ -187,14 +187,14 @@
   line-height: 1;
 }
 
-.exercise-detail .card-action {
+.exercise-detail .modal-actions {
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.exercise-detail .card-action .btn {
+.exercise-detail .modal-actions .btn {
   width: 100%;
 }
 
@@ -263,13 +263,13 @@
     gap: 32px;
   }
 
-  .exercise-detail .card-action {
+  .exercise-detail .modal-actions {
     flex-wrap: nowrap;
     justify-content: flex-end;
     margin-top: 64px;
   }
 
-  .exercise-detail .card-action .btn {
+  .exercise-detail .modal-actions .btn {
     width: auto;
   }
 

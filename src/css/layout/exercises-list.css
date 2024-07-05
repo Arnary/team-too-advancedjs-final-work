@@ -1,3 +1,9 @@
+#exersise-block {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .exercise-card {
   width: 100%;
   max-width: 335px;
@@ -110,4 +116,24 @@
 
 .exercise-card-footer .value {
   color: #242424;
+}
+
+.exercise-card-remove.btn {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  margin-left: 8px;
+}
+.exercise-card-remove.btn {
+  background-color: transparent;
+}
+
+.exercise-card-remove.btn .icon {
+  height: 16px;
+  width: 16px;
+}
+
+.exercise-card-remove.btn:hover .icon {
+  fill: var(--color-white);
+  stroke: var(--color-black);
 }
