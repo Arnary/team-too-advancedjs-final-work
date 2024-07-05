@@ -1,0 +1,110 @@
+.exercises-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 375px;
+  margin-bottom: 20px;
+}
+
+.exercise-card {
+  width: 100%;
+  max-width: 335px;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 16px;
+}
+
+.exercise-card-header {
+  display: flex;
+  align-items: center;
+}
+
+.exercise-card-title {
+  border: 1px solid #242424;
+  border-radius: 15px;
+  padding: 5px 8px;
+  font-weight: 500;
+  font-size: 12px;
+  color: #242424;
+  text-transform: uppercase;
+  padding: 5px 8px;
+}
+
+.exercise-card-rating {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #242424;
+  margin-left: 16px;
+}
+
+.exercise-rating-icon {
+  fill: #eea10c;
+  width: 18px;
+  height: 18px;
+  padding: 2px;
+  position: relative;
+  top: -1px;
+}
+
+.exercise-card-start {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  color: #242424;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exercise-start-icon {
+  fill: #242424;
+  width: 18px;
+  height: 18px;
+  padding: 2px;
+  transform: rotate(90deg);
+}
+
+.exercise-card-content {
+  margin-top: 25px;
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.exercise-card-name {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1;
+  color: #242424;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exercise-name-icon {
+  margin-right: 16px;
+}
+
+.exercise-card-footer {
+  display: flex;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(36, 36, 36, 0.4);
+  gap: 16px;
+}
+
+.exercise-card-detail {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exercise-card-footer .value {
+  color: #242424;
+}
