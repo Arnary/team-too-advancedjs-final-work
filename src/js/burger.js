@@ -2,30 +2,39 @@ document.addEventListener('DOMContentLoaded', function () {
   const homeButton = document.getElementById('homeButton');
   const favoritesButton = document.getElementById('favoritesButton');
   const openMenuButton = document.querySelector('.js-open-menu');
-  const closeMenuButton = document.querySelector('.js-close-menu');
+  const closeMenuButton = document.querySelector('.menu-close__button');
   const mobileMenu = document.querySelector('#mobile-menu');
-  const backdrop = document.querySelector('[data-menu-backdrop]');
+  const backdrop = document.querySelector('.backdrop');
   const menuNavLinks = document.querySelectorAll('.menu__nav-link');
 
-  // Оголошуємо функції для відкриття та закриття меню
+  // Function to open the mobile menu
   function openMobileMenu() {
     mobileMenu.classList.add('is-open');
     backdrop.classList.remove('is-hidden');
     document.body.classList.add('no-scroll');
   }
 
+  // Function to close the mobile menu
   function closeMobileMenu() {
     mobileMenu.classList.remove('is-open');
     backdrop.classList.add('is-hidden');
     document.body.classList.remove('no-scroll');
   }
 
-  // Обробники клацання по кнопках "бургера" та "закрити"
+  // Event listener for open menu button
   openMenuButton.addEventListener('click', openMobileMenu);
-  closeMenuButton.addEventListener('click', closeMobileMenu);
-  backdrop.addEventListener('click', closeMobileMenu);
 
-  // Обробники клацання по пунктах меню
+  // Event listener for close menu button
+  closeMenuButton.addEventListener('click', closeMobileMenu);
+
+  // Event listener for backdrop click to close menu
+  backdrop.addEventListener('click', function(event) {
+    if (event.target === backdrop) {
+      closeMobileMenu();
+    }
+  });
+
+  // Event listeners for menu navigation links
   menuNavLinks.forEach(link => {
     link.addEventListener('click', function(event) {
       event.preventDefault();
@@ -39,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Встановлення активного стану для кнопок на основі поточної сторінки
+  // Setting active state based on current page
   const currentPath = window.location.pathname;
 
   if (currentPath.includes('favorites.html')) {
@@ -48,24 +57,25 @@ document.addEventListener('DOMContentLoaded', function () {
     homeButton.classList.add('active');
   }
 
-  // Обробник клацання для кнопок "Home" і "Favorites"
+  // Event listener for Home button
   homeButton.addEventListener('click', function(event) {
     event.preventDefault();
     if (!homeButton.classList.contains('active')) {
       homeButton.classList.add('active');
       favoritesButton.classList.remove('active');
-      // Додаткові дії, якщо потрібно
+      // Additional actions if needed
     }
   });
 
+  // Event listener for Favorites button
   favoritesButton.addEventListener('click', function(event) {
     event.preventDefault();
     if (!favoritesButton.classList.contains('active')) {
       favoritesButton.classList.add('active');
       homeButton.classList.remove('active');
-      // Перенаправлення на сторінку "Favorites"
+      // Redirect to "Favorites" page
       window.location.href = './favorites.html';
-      // Додаткові дії, якщо потрібно
+      // Additional actions if needed
     }
   });
 });
