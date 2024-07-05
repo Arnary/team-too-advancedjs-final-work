@@ -1,18 +1,21 @@
-.exercises-list-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  max-width: 375px;
-  margin-bottom: 20px;
-}
-
 .exercise-card {
   width: 100%;
   max-width: 335px;
   background-color: #fff;
   border-radius: 15px;
   padding: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .exercise-card {
+    max-width: 344px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .exercise-card {
+    max-width: 442px;
+  }
 }
 
 .exercise-card-header {
