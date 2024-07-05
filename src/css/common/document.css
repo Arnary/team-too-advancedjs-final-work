@@ -7,6 +7,8 @@
   --color-white: #f4f4f4;
   --color-black: #242424;
 
+  --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   --width-mobile: 375px;
   --width-tablet: 768px;
   --width-desktop: 1440px;
@@ -44,6 +46,7 @@ body {
   padding: calc(var(--spacing-base) * 5);
   outline: 1px solid tomato;
 }
+
 
 @media screen and (min-width: 375px) {
   .section {
