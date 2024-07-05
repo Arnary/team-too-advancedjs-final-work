@@ -67,8 +67,8 @@
 
 .modal-close-btn .icon {
   stroke: #ffffff;
-  width: 24px;
-  height: 24px;
+  width: 12px;
+  height: 12px;
 }
 
 .modal-close-btn:hover,
@@ -245,8 +245,8 @@
   }
 
   .modal-close-btn .icon {
-    width: 28px;
-    height: 28px;
+    width: 14px;
+    height: 14px;
   }
 
   .modal-container {
