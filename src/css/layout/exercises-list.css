@@ -81,6 +81,9 @@
   font-size: 20px;
   line-height: 1;
   color: #242424;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .exercise-name-icon {

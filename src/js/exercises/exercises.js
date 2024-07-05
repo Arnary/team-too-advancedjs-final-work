@@ -12,12 +12,12 @@ export default class Exercises {
   constructor() {
     this.#block = document.getElementById('exercises-block');
     this.#list = document.getElementById('exercises-list');
-    this.#pagination = new Pagination('#exercises-pagination', async (page) => {
+    this.#pagination = new Pagination('#exercises-pagination', async page => {
       await this.#loadExercises(page);
     });
   }
 
-  async load({ filter, category, query}) {
+  async load({ filter, category, query }) {
     this.#filter = filter;
     this.#category = category;
     this.#query = query;
@@ -40,9 +40,46 @@ export default class Exercises {
     this.#pagination.render(page, totalPages);
   }
 
-  #renderExercise({ id, name }) {
+  #renderExercise(item) {
     return `
-        <li style="width: 100%; border: 1px solid red" class="exercises-item" data-id="${id}">${name}</li>
+      <div class="exercise-card">
+        <header class="exercise-card-header">
+          <span class="exercise-card-title">Workout</span>
+          <span class="exercise-card-rating">${item.rating}</span>
+          <svg class="exercise-rating-icon">
+              <use href="./img/icons.svg#icon-star"></use>
+          </svg>
+          <button class="exercise-card-start">
+            Start
+            <svg class="exercise-start-icon">
+              <use href="./img/icons.svg#icon-arrow"></use>
+            </svg>
+          </button>
+        </header>
+
+        <div class="exercise-card-content">
+          <img src="./img/figure.svg" alt="figure" class="exercise-name-icon" />
+          <div class="exercise-card-name">
+            ${capitalizeFirstLetter(item.name)}
+          </div>
+        </div>
+
+        <footer class="exercise-card-footer">
+          <div class="exercise-card-detail">
+            Burned calories: <span class="value">${item.burnedCalories}</span>
+          </div>
+          <div class="exercise-card-detail">
+            Body part: <span class="value">${item.bodyPart}</span>
+          </div>
+          <div class="exercise-card-detail">
+            Target: <span class="value">${item.target}</span>
+          </div>
+        </footer>
+      </div>
   `;
   }
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
