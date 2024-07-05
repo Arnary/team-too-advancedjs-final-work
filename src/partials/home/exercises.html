@@ -1,1 +1,65 @@
-<section class="section exercises">Exercises list</section>
+<section class="section exercises">
+  <div class="exercises-bar">
+    <h2 class="exercises-title">
+      Exercises
+      <span class="exercises-title-sub hidden">
+        <span class="exercises-title-separator"><span>/</span></span>
+        <span class="exercises-title-sub-text">lower legs</span>
+      </span>
+    </h2>
+    <div class="exercises-filters">
+      <form class="exercises-search-form hidden">
+        <input class="exercises-search-input" type="text" placeholder="Search" />
+        <button class="exercises-search-btn" type="button">
+          <svg class="exercises-search-icon" width="18" height="18">
+            <use href="./img/icons.svg#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+      <ul class="exercises-filter-list">
+        <li>
+          <button
+            class="exercises-filter-btn active"
+            type="button"
+            data-filter-key="muscles"
+          >Muscles</button>
+        </li>
+        <li>
+          <button
+            class="exercises-filter-btn"
+            type="button"
+            data-filter-key="bodypart"
+          >Body parts</button>
+        </li>
+        <li>
+          <button
+            class="exercises-filter-btn"
+            type="button"
+            data-filter-key="equipment"
+          >Equipment</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exercises-container">
+    <div class="exercises-categories-container">
+      <div id="exercises-categories-block">
+        <ul id="exercises-categories-list" class="exercises-categories-list">
+        </ul>
+        <div id="exercises-categories-pagination" class="pagination">
+        </div>
+      </div>
+      <div id="exercises-block" class="hidden">
+        <ul id="exercises-list" class="exercises-categories-list">
+        </ul>
+        <div id="exercises-pagination" class="pagination">
+        </div>
+      </div>
+    </div>
+
+    <div class="exercises-quote-container">
+      <load ="partials/common/quote.html" />
+    </div>
+  </div>
+</section>
