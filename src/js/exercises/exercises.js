@@ -49,7 +49,7 @@ export default class Exercises {
           <svg class="exercise-rating-icon">
               <use href="./img/icons.svg#icon-star"></use>
           </svg>
-          <button class="exercise-card-start">
+          <button class="exercise-card-start" data-exercise-id="${item._id}">
             Start
             <svg class="exercise-start-icon">
               <use href="./img/icons.svg#icon-arrow"></use>

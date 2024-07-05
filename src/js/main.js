@@ -1,6 +1,6 @@
 import './exercises.js';
 
-import ExerciseDetailInit from './exercise-datail';
+import ExerciseDetailInit from './exercise-detail';
 
 // ExerciseDetail
 const { modal: detailModal } = await ExerciseDetailInit();
