@@ -41,6 +41,8 @@ export class axiosWrapper {
 
   describeError(error) {
     if (error.response) {
+      if (error.response.data?.message) return error.response.data.message;
+
       const { status } = error.response;
       if (status === 400) return 'Invalid request';
       if (status === 404) return 'Not found';

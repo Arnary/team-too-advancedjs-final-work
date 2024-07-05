@@ -1,4 +1,5 @@
 import Modal from './Modal.class.js';
+import { Notify } from 'notiflix';
 import { axiosWrapper } from './utils/axiosWrapper.js';
 
 const $axios = new axiosWrapper();
@@ -69,7 +70,7 @@ class RatingModal extends Modal {
     if (modalBody) {
       modalBody.innerHTML = content;
     } else {
-      console.error('Modal body not found');
+      console.log('Error: Modal body not found');
     }
   }
 
@@ -87,13 +88,13 @@ class RatingModal extends Modal {
     if (form) {
       form.addEventListener('submit', this.handleSubmit.bind(this));
     } else {
-      console.error('Rating form not found');
+      console.log('Error: Rating form not found');
     }
 
     if (closeBtn) {
       closeBtn.addEventListener('click', this.close.bind(this));
     } else {
-      console.error('Close button not found');
+      console.log('Error: Close button not found');
     }
 
     this.setupStarRating();
@@ -144,10 +145,10 @@ class RatingModal extends Modal {
         email,
         review: comment
       });
+      try {Notify.success('Rating submitted successfully');} catch (e) {console.log('Rating submitted successfully');}
       this.close();
-      this.exerciseModal.open(this.currentItem._id);
     } catch (error) {
-      console.error('Error submitting rating:', error);
+      try {Notify.failure(`Error submitting rating: ${$axios.describeError(error)}`);} catch (e) {console.log(`Error submitting rating: ${$axios.describeError(error)}`);}
     }
   }
 
