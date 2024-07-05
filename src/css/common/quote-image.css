@@ -1,0 +1,32 @@
+.quote-picture {
+  border-radius: var(--radius-m);
+
+  min-width: 280px;
+  max-width: 335px;
+  height: 242px;
+
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 767.99px) {
+  .quote-picture {
+    max-width: 288px;
+    height: 249px;
+  }
+}
+
+@media screen and (min-width: 1439.99px) {
+  .quote-picture {
+    max-width: 444px;
+    height: 242px;
+  }
+}
+
+.quote-picture-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,56 @@
+.quote-main {
+  border-radius: var(--radius-m);
+
+  min-width: 280px;
+  max-width: 335px;
+
+  margin: 0;
+  padding: calc(var(--spacing-base) * 5);
+
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: start;
+
+  background-color: var(--quote-background-color);
+  color: var(--color-white);
+}
+
+.quote-main-title-quotes {
+  color: var(--color-white);
+  width: 20px;
+  height: 20px;
+}
+
+.quote-main-author {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+}
+
+@media screen and (min-width: 767.99px) {
+  .quote-main {
+    max-width: 400px;
+    height: 249px;
+
+    padding: calc(var(--spacing-base) * 10);
+  }
+
+  .quote-main-title {
+    font-size: 24px;
+    line-height: 1.33;
+  }
+
+  .quote-main-author {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (min-width: 1439.99px) {
+  .quote-main {
+    max-width: 444px;
+    height: 242px;
+  }
+}
