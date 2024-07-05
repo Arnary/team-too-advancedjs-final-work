@@ -274,18 +274,20 @@
   color: rgba(244, 244, 244, 0.40);
   font-size: 12px;
   line-height: 18px;
-  margin-bottom: 11px;
+  margin-bottom: 8px;
+  font-weight: 400;
 }
 
 .modal__rating {
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 }
 
 .modal__rating-value {
-  color: #F4F4F4
+  color: #F4F4F4;
+  font-size: 12px;
 }
 
 .modal__rating-star input[type="radio"] {
@@ -308,7 +310,7 @@
 
 .modal__rating-field {
   display: inline-flex;
-  padding: 12px 14px;
+  padding: 8px 14px;
   align-items: center;
   gap: 10px;
   border-radius: 30px;
@@ -319,18 +321,27 @@
   font-weight: 400;
   line-height: 24px;
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
+}
+
+.modal__rating-field:focus {
+  outline: none;
 }
 
 .modal__rating-field.textarea {
   resize: none;
   border-radius: 15px;
-  height: 106px;
+  height: 93px;
+  margin-bottom: 20px;
+}
+
+.modal__rating-field::placeholder {
+  font-size: 14px;
 }
 
 .modal__rating-submit {
   display: inline-flex;
-  padding: 12px 0;
+  padding: 9px 0;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -342,6 +353,8 @@
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
   width: 100%;
+  border: none;
+  font-size: 14px;
 }
 
 .modal__rating-submit:hover {
