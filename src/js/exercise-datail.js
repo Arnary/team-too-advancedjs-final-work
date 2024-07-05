@@ -85,18 +85,18 @@ const templates = {
     return `<div class="card">
         <img class="card-img" src="${gifUrl}" alt="${title}">
         <div class="card-body">
-          <h3 class="modal-title">${title}</h3>
+          <div class="card-header">
+            <h3 class="card-title">${title}</h3>
             ${templates.ratingTemplate(rating)}
-          <hr/>
+          </div>
           <ul class="char-list">
             ${charListTemplate}
           </ul>
-          <hr/>
-          <p>${description}</p>
+          <p class="char-info">${description}</p>
+          <div class="card-action">
+            ${templates.detailActionBtnsTemplate(isFav)}
+          </div>
         </div>
-      </div>
-      <div class="modal-action">
-        ${templates.detailActionBtnsTemplate(isFav)}
       </div>`;
   },
 };

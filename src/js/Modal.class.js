@@ -85,6 +85,7 @@ export default class Modal {
     if (typeof this.onOpen === 'function') {
       this.onOpen();
     }
+    document.body.style.overflow = 'hidden';
   }
 
   close() {
@@ -101,6 +102,7 @@ export default class Modal {
           }
           this.removeEvents();
           this.body = '';
+          document.body.style.overflow = 'auto';
         }
       },
       { once: true }
