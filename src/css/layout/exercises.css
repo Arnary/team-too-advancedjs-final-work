@@ -162,7 +162,27 @@
   background-color: transparent;
 }
 
+
+.exercises-search-clear-btn {
+  position: absolute;
+  top: 50%;
+  right: 34px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
 .exercises-search-icon {
+  padding: 0;
+  stroke: var(--color-black);
+  fill: var(--color-white);
+}
+
+.exercises-search-clear-icon {
   padding: 0;
   stroke: var(--color-black);
   fill: var(--color-white);
