@@ -296,7 +296,6 @@ const showRatingModal = (item) => {
   ratingModal.open(item);
 };
 
-export default async () => {
 const initDetail = async () => {
   const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
   modal = new ExerciseModal({ className: 'exercise-detail' });

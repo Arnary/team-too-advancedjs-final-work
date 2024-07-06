@@ -273,6 +273,10 @@
   display: none;
 }
 
+.modal__rating-star.active {
+  background-color: unset;
+}
+
 .modal__rating-star svg {
   width: 18px;
   height: 18px;
