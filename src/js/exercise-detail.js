@@ -266,7 +266,7 @@ const modalBtnClickHandler = item => {
       return;
     }
 
-    if (target.dataset.favAdd || target.dataset.favDel) {
+    if ('string' === typeof target.dataset.favAdd || 'string' === typeof target.dataset.favDel) {
       lsToggleFavItem(item);
       const actionsRef = modal?.$el.querySelector('.modal-actions');
 
@@ -285,6 +285,7 @@ const showRatingModal = (item) => {
   if (!ratingModal) {
     const modalRoot = document.getElementById('ratingModalRoot');
     if (!modalRoot) {
+      console.log('Error: Modal root not found');
       return;
     }
     ratingModal = new RatingModal({
@@ -293,6 +294,7 @@ const showRatingModal = (item) => {
       exerciseModal: modal
     });
   }
+  modal.close();
   ratingModal.open(item);
 };
 
