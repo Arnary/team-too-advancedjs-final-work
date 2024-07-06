@@ -8,6 +8,7 @@ export default class Exercises {
   #filter;
   #category;
   #query;
+  #limit = 8
 
   constructor() {
     this.#block = document.getElementById('exercises-block');
@@ -15,6 +16,10 @@ export default class Exercises {
     this.#pagination = new Pagination('#exercises-pagination', async page => {
       await this.#loadExercises(page);
     });
+
+    if (window.innerWidth > 767) {
+      this.#limit = 10
+    }
   }
 
   async load({ filter, category, query }) {
@@ -33,7 +38,7 @@ export default class Exercises {
   }
 
   async #loadExercises(page) {
-    const { totalPages, results } = await getExercises(this.#filter, this.#category, this.#query, page);
+    const { totalPages, results } = await getExercises(this.#filter, this.#category, this.#query, page, this.#limit);
 
     this.#list.innerHTML = results.map(this.#renderExercise).join('');
 

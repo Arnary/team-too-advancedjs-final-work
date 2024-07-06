@@ -151,7 +151,7 @@
 .exercises-search-btn {
   position: absolute;
   top: 50%;
-  right: 14px;
+  right: 10px;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;

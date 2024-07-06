@@ -1,6 +1,7 @@
 import Modal from './Modal.class.js';
 import { Notify } from 'notiflix';
 import { axiosWrapper } from './utils/axiosWrapper.js';
+import storedExcersises from './storedExcersises.js';
 
 const $axios = new axiosWrapper();
 let modal = null;
@@ -315,9 +316,6 @@ const initDetail = async () => {
 
     modal.itemID = id;
 
-    const favorites_list = JSON.parse(localStorage.getItem('favorites')) ?? [];
-    const isFav = favorites_list.findIndex(({ _id }) => _id === id) > -1;
-
     // modal.body = 'Some loader >>>';
     modal.open();
 
@@ -327,9 +325,9 @@ const initDetail = async () => {
         throw new Error();
       }
 
-      exercise.isFav = isFav;
+      exercise.isFav = storedExcersises.favoritesList.findIndex(({ _id }) => _id === id) > -1;
       modal.body = templates.modalContent(exercise);
-      modal.actions = templates.detailActionBtnsTemplate(isFav);
+      modal.actions = templates.detailActionBtnsTemplate(exercise.isFav);
 
       const handler = modalBtnClickHandler(exercise);
       modal.$el.addEventListener('click', handler);
@@ -347,4 +345,4 @@ const initDetail = async () => {
   return { modal };
 };
 
-export { initDetail, lsToggleFavItem };
+export { initDetail };

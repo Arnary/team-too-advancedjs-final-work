@@ -1,6 +1,6 @@
 import { capitalizeFirstLetter } from './utils/helpers.js';
-import { lsToggleFavItem } from './exercise-detail';
 import Pagination from './exercises/pagination.js';
+import storedExcersises from './storedExcersises.js';
 
 const emptyMessage = () =>
   `It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.`;
@@ -46,11 +46,9 @@ const store = new Proxy(
   {
     page: 1,
     itemsPerPage: window.innerWidth > 767 ? 10 : 8,
-    favoritesList: JSON.parse(localStorage.getItem('favorites') ?? []),
   },
   {
     set(target, property, value) {
-      console.log(target, property, value);
       target[property] = value;
       if (property === 'page') {
         renderList();
@@ -60,15 +58,10 @@ const store = new Proxy(
   }
 );
 
-const totalPages = () => Math.ceil(store.favoritesList.length / store.itemsPerPage);
+const totalPages = () => Math.ceil(storedExcersises.favoritesList.length / store.itemsPerPage);
 
 const pagination = new Pagination('#exercises-pagination', async page => {
   store.page = page;
-
-  const btns = document.querySelectorAll('.pagination-button');
-  Array.from(btns).forEach(el => {
-    console.log(el.dataset.page);
-  });
 });
 
 const refs = {
@@ -83,18 +76,29 @@ const getPaginatedItems = (list, page, items_per_page) => {
 
 function renderList() {
   let markup = emptyMessage();
-  const items = getPaginatedItems(store.favoritesList, store.page, store.itemsPerPage);
-  console.log(items, store.favoritesList, store.page, store.itemsPerPage);
+  const items = getPaginatedItems(storedExcersises.favoritesList, store.page, store.itemsPerPage);
+
   if (items.length) {
     markup = items.map(item => exerciseTemplate(item)).join('');
   }
 
   refs.list.innerHTML = markup;
-
-  pagination.render(store.page, totalPages());
+  if (totalPages() > 1) {
+    pagination.render(store.page, totalPages());
+  }
 }
 
 renderList();
+
+const removeExercise = id => {
+  storedExcersises.favoritesList = storedExcersises.favoritesList.filter(item => item._id !== id);
+
+  const items = getPaginatedItems(storedExcersises.favoritesList, store.page, store.itemsPerPage);
+  if (store.page > 1 && items.length === 0) {
+    store.page -= 1;
+  }
+  renderList();
+};
 
 refs.list.addEventListener('click', event => {
   if ('favDel' in event.target.dataset) {
@@ -102,17 +106,9 @@ refs.list.addEventListener('click', event => {
     if (!id) {
       return;
     }
-    const exercise = store.favoritesList.find(item => item._id === id);
-    store.favoritesList = store.favoritesList.filter(item => item._id !== id);
-    lsToggleFavItem(exercise);
-    const itemRef = refs.list.querySelector(`.exercise-card[data-exercise-id="${id}"]`);
-    itemRef.remove();
-    const items = getPaginatedItems(store.favoritesList, store.page, store.itemsPerPage);
 
-    if (store.page > 1 && items.length === 0) {
-      store.page--;
-    }
-
-    renderList();
+    removeExercise(id);
   }
 });
+
+export { removeExercise };
