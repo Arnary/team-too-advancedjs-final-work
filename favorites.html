@@ -22,47 +22,188 @@
 
 
 
-    <script type="module" crossorigin src="/advancedjs-final-work/assets/vendor-bdb8a163.js"></script>
-    <script type="module" crossorigin src="/advancedjs-final-work/assets/main-00c80ec2.js"></script>
-    <link rel="stylesheet" href="/advancedjs-final-work/assets/main-802f6c02.css">
+
+
+
+
+    <script type="module" crossorigin src="/advancedjs-final-work/assets/vendor-833ab380.js"></script>
+    <script type="module" crossorigin src="/advancedjs-final-work/assets/burger-77c8d02e.js"></script>
+    <link rel="stylesheet" href="/advancedjs-final-work/assets/vendor-e5212ee8.css">
+    <link rel="stylesheet" href="/advancedjs-final-work/assets/burger-df6909ce.css">
   </head>
-  <body>
-    <header class="section header">
-  <img src="/advancedjs-final-work/assets/logo-4122e342.svg" alt="Your Energy" class="header-logo" />
+  <body class="favorites">
+    <div class="container">
+  <div class="header-container" id="header__top">
+    <a class="header__logo" href="./index.html">
+      <svg width="132" height="24">
+        <use href="/advancedjs-final-work/assets/sprite-ea467297.svg#icon-Logo"></use>
+      </svg>
+      <span class="header__logo-text">Your Energy</span>
+    </a>
+    <nav class="header__nav">
+      <a id="homeButton" class="nav-btn" href="./index.html">Home</a>
+      <a id="favoritesButton" class="nav-btn" href="./favorites.html">Favorites</a>
+    </nav>
 
-  <nav class="header-nav">
-    <ul class="header-nav-menu">
-      <li class="header-nav-item"><a href="./index.html" class="header-nav-link selected">Home</a></li>
-      <li class="header-nav-item"><a href="./favorites.html" class="header-nav-link">Favorites</a></li>
+    <ul class="header__socials-list">
+      <li class="header__socials-item">
+        <a href="https://www.facebook.com/goITclub/" class="header__socials-link" target="_blank" rel="noopener noreferrer" aria-label="facebook icon">
+          <svg class="header__socials-icon" width="7" height="17">
+            <use href="/advancedjs-final-work/assets/sprite-ea467297.svg#icon-facebook"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="header__socials-item">
+        <a href="https://www.instagram.com/goitclub/" class="header__socials-link" target="_blank" rel="noopener noreferrer" aria-label="instagram icon">
+          <svg class="header__socials-icon" width="24" height="24">
+            <use href="/advancedjs-final-work/assets/sprite-ea467297.svg#icon-instagram"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="header__socials-item">
+        <a href="https://www.youtube.com/c/GoIT" class="header__socials-link" target="_blank" rel="noopener noreferrer" aria-label="youtube icon">
+          <svg class="header__socials-icon" width="24" height="24">
+            <use href="/advancedjs-final-work/assets/sprite-ea467297.svg#icon-youtube"></use>
+          </svg>
+        </a>
+      </li>
     </ul>
-  </nav>
+    <button class="menu-open__button js-open-menu" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open-btn>
+      <svg class="menu-open__icon" width="32" height="32" stroke="var(--color-black)" aria-controls="mobile-menu" aria-expanded="false" role="img">
+        <use class="menu-open__use" href="/advancedjs-final-work/assets/sprite-ea467297.svg#icon-align-justify"></use>
+      </svg>
+      <span class="burger-btn">burger</span>
+    </button>
 
-  <div class="header-social">
-    <a href="https://www.facebook.com/goITclub/" class="header-social-link" target="_blank">
-      <img src="/advancedjs-final-work/assets/facebook-2d6a2a07.svg" class="header-social-icon" alt="Facebook" />
-    </a>
-    <a href="https://www.instagram.com/goitclub/" class="header-social-link" target="_blank">
-      <img src="/advancedjs-final-work/assets/instagram-c317ea8d.svg" class="header-social-icon" alt="Instagram" />
-    </a>
-    <a href="https://www.youtube.com/c/GoIT" class="header-social-link" target="_blank">
-      <img src="/advancedjs-final-work/assets/youtube-1aef121c.svg" class="header-social-icon" alt="Youtube" />
-    </a>
-  </div>
+    <div class="backdrop is-hidden" data-menu-backdrop>
+      <div class="menu-container js-menu-container" id="mobile-menu">
+        <button type="button" class="menu-close__button js-close-menu" data-menu-close-btn>
+          <svg class="menu-close__icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 8L8 24" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M8 8L24 24" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
 
-  <div class="header-burger"><img src="/advancedjs-final-work/assets/burger-478f0706.svg" alt="burger menu" /></div>
-</header>
+        <nav class="menu__nav">
+          <ul class="menu__nav-list">
+            <li class="menu__nav-item">
+              <a class="menu__nav-link" href="./index.html">Home</a>
+            </li>
+            <li class="menu__nav-item">
+              <a class="menu__nav-link" href="./favorites.html">Favorites</a>
+            </li>
+          </ul>
+        </nav>
 
-    <section class="section quote">Quote</section>
-    <div class="favorite-exercises">Favorite exercises</div>
-    <footer class="section footer">Footer</footer>
-
-    <div class="modal-backdrop">
-  <div class="modal-window">
-    <img src="/advancedjs-final-work/assets/close-btn-d3bba359.svg" alt="" class="modal-close-btn" width="32" height="32" />
-    Modal
+        <ul class="menu__socials-list">
+          <li class="menu__socials-item">
+            <a class="menu__socials-link" href="https://www.facebook.com/goITclub/" target="_blank" rel="noopener noreferrer" aria-label="facebook icon">
+              <svg class="menu__socials-icon" width="7" height="17">
+                <use href="/advancedjs-final-work/assets/sprite-ea467297.svg#icon-facebook"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="menu__socials-item">
+            <a class="menu__socials-link" href="https://www.instagram.com/goitclub/" target="_blank" rel="noopener noreferrer" aria-label="instagram icon">
+              <svg class="menu__socials-icon" width="24" height="24">
+                <use href="/advancedjs-final-work/assets/sprite-ea467297.svg#icon-instagram"></use>
+              </svg>
+            </a>
+          </li>
+          <li class="menu__socials-item">
+            <a class="menu__socials-link" href="https://www.youtube.com/c/GoIT" target="_blank" rel="noopener noreferrer" aria-label="youtube icon">
+              <svg class="menu__socials-icon" width="24" height="24">
+                <use href="/advancedjs-final-work/assets/sprite-ea467297.svg#icon-youtube"></use>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
+    <section class="section exercises">
+  <h2 class="favorites-title">Favorites</h2>
+  <div class="exercises-container">
+    <div class="favorite-quote-container">
+      <div class="quote-favorites-wrapper">
+    <div class="quote-main-favorites-wrapper">
+        <div class="quote-main">
+    <svg class="quote-main-icon">
+        <use href="/advancedjs-final-work/assets/icons-cfd541b1.svg#icon-running-stick-figure" width="32" height="32" />
+    </svg>
 
-    <div>Burger menu</div>
+    <div class="quote-main-text">
+        <h3 class="quote-main-title">
+            <span class="quote-main-title-text">
+                Quote of the day
+            </span>
+
+            <svg class="quote-main-title-quotes">
+                <use href="/advancedjs-final-work/assets/icons-cfd541b1.svg#icon-inverted_commas" width="20" height="20" />
+            </svg>
+        </h3>
+
+        <p class="quote-main-quote">
+            A lot of times I find that people who are blessed with the most talent don't ever develop that attitude,
+            and the ones who aren't blessed in that way are the most competitive and have the biggest heart.
+        </p>
+
+        <p class="quote-main-author">
+            Tom Brady
+        </p>
+    </div>
+</div>
+    </div>
+
+    <div class="quote-peptalk-favorites-wrapper">
+        <div class="quote-peptalk">
+            <svg class="quote-peptalk-favorites-icon">
+                <use href="/advancedjs-final-work/assets/icons-cfd541b1.svg#icon-barbell-bare" width="20" height="20" />
+            </svg>
+
+            <div class="quote-peptalk-text">
+                <h3 class="quote-peptalk-favorites-title">110 min</h3>
+                <p class="quote-peptalk-favorites-subtitle">Daily norm of sports</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="quote-picture-favorites-wrapper">
+        <div class="quote-picture">
+            <picture>
+                <source srcset="/advancedjs-final-work/assets/quote-desk-0d4be0f0.jpg , /advancedjs-final-work/assets/quote-desk@2x-414ebca8.jpg 2x" media="(min-width: 1440px)">
+                <source srcset="/advancedjs-final-work/assets/quote-tab-c7d89cc0.jpg , /advancedjs-final-work/assets/quote-tab@2x-57395d6d.jpg 2x" media="(min-width: 768px)">
+                <source srcset="/advancedjs-final-work/assets/quote-mob-a7192059.jpg , /advancedjs-final-work/assets/quote-mob@2x-dd15821c.jpg 2x">
+
+                <img src="/advancedjs-final-work/assets/quote-mob-a7192059.jpg" alt="quote" class="quote-picture-image">
+            </picture>
+        </div>
+    </div>
+
+    
+</div>
+    </div>
+
+    <div class="exercises-categories-container">
+      <div id="exercises-block">
+        <ul id="exercises-list" class="exercises-categories-list"></ul>
+        <div id="exercises-pagination" class="pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- <div class="modal-backdrop">
+  <div class="modal-window">
+    <img src="./img/close-btn.svg" alt="" class="modal-close-btn" width="32" height="32" />
+    Modal
+  </div>
+</div> -->
+
+
+
+    
   </body>
 </html>
