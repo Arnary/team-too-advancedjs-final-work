@@ -26,11 +26,6 @@ form.addEventListener('submit', async (event) => {
     }
 });
 
-function isValidEmail(email) {
-    const regex = /^([\w.%+-]+@([\w.-]+\.[a-zA-Z]{2,}))$/i;
-    return regex.test(email);
-}
-
 async function sendSubscription(email) {
     const url = `${BASE_URL}`;
     const data = { email: email };
