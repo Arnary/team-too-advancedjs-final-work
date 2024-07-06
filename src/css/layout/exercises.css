@@ -288,7 +288,7 @@
 }
 @media screen and (min-width: 1440px) {
   .exercises-categories-list {
-    max-width: 826px;
+    max-width: 900px;
     /* margin-left: auto; */
   }
 }
