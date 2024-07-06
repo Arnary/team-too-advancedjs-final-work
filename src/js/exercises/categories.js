@@ -7,6 +7,8 @@ export default class Categories {
   #pagination;
   #onClickHandler;
   #filter;
+  #limit = 9;
+
   constructor({ onClickHandler }) {
     this.#block = document.getElementById('exercises-categories-block');
     this.#list = document.getElementById('exercises-categories-list');
@@ -22,6 +24,10 @@ export default class Categories {
       const { name } = block.dataset;
       this.#onClickHandler({ name });
     });
+
+    if (window.innerWidth > 767) {
+      this.#limit = 12
+    }
   }
 
   async load(filter) {
@@ -38,7 +44,7 @@ export default class Categories {
   }
 
   async #loadFilters(page) {
-    const { totalPages, results } = await getFilters(this.#filter, page);
+    const { totalPages, results } = await getFilters(this.#filter, page, this.#limit);
 
     this.#list.innerHTML = results.map(this.#renderFilter).join('');
 
