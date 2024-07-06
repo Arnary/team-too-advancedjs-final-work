@@ -83,9 +83,7 @@ function renderList() {
   }
 
   refs.list.innerHTML = markup;
-  if (totalPages() > 1) {
-    pagination.render(store.page, totalPages());
-  }
+  pagination.render(store.page, totalPages());
 }
 
 renderList();
