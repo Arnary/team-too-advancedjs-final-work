@@ -44,7 +44,6 @@ body {
 
   margin: 0 auto;
   padding: calc(var(--spacing-base) * 5);
-  outline: 1px solid tomato;
 }
 
 
