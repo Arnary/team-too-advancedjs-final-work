@@ -3,7 +3,7 @@ import Pagination from './exercises/pagination.js';
 import storedExcersises from './storedExcersises.js';
 
 const emptyMessage = () =>
-  `It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.`;
+  `<li class="message">It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</li>`;
 
 const exerciseTemplate = item => `
   <li class="exercise-card favorite-card" data-exercise-id="${item._id}">
@@ -83,6 +83,7 @@ function renderList() {
   }
 
   refs.list.innerHTML = markup;
+  refs.list.classList.add('empty');
   if (totalPages() > 1) {
     pagination.render(store.page, totalPages());
   }

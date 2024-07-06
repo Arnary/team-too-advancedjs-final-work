@@ -141,3 +141,27 @@
   fill: var(--color-white);
   stroke: var(--color-black);
 }
+
+#exercises-list.empty {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#exercises-list .message {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.33333;
+  text-align: center;
+  color: var(--color-black);
+  max-width: 318px;
+}
+
+@media (min-width: 768px) {
+  #exercises-list .message {
+    max-width: 554px;
+  }
+}
