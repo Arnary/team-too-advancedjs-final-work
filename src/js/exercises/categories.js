@@ -1,5 +1,6 @@
 import Pagination from './pagination.js';
 import { getFilters } from '../api.js';
+import { capitalizeFirstLetter } from '../utils/helpers';
 
 export default class Categories {
   #block;
@@ -56,8 +57,8 @@ export default class Categories {
         <li class="exercises-categories-item" data-name="${name}" data-filter="${filter}">
           <img class="exercises-categories-item-img" src="${imgURL}">
           <div class="exercises-categories-item-wrapper">
-            <h2 class="exercises-categories-item-title">${filter}</h2>
-            <p class="exercises-categories-item-text">${name}</p>
+            <h2 class="exercises-categories-item-title">${capitalizeFirstLetter(name)}</h2>
+            <p class="exercises-categories-item-text">${filter}</p>
           </div>
         </li>
   `;

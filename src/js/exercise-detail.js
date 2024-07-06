@@ -3,6 +3,7 @@ import { Notify } from 'notiflix';
 import { axiosWrapper } from './utils/axiosWrapper.js';
 import storedExcersises from './storedExcersises.js';
 
+
 const $axios = new axiosWrapper();
 let modal = null;
 let ratingModal = null;
