@@ -14,9 +14,7 @@ export default class Pagination {
   render(currentPage, totalPages) {
     this.element.innerHTML = '';
 
-    if (totalPages < 1) {
-      return;
-    }
+    if (totalPages <= 1) return;
 
     this.element.innerHTML = range(1, totalPages + 1)
       .map(page => {
