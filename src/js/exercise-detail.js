@@ -1,6 +1,7 @@
 import Modal from './Modal.class.js';
 import { axiosWrapper } from './utils/axiosWrapper.js';
 import storedExcersises from './storedExcersises.js';
+import iconsPack from '../img/icons.svg';
 
 const $axios = new axiosWrapper();
 let modal = null;
