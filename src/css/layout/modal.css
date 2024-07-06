@@ -32,7 +32,7 @@
   position: relative;
   margin: auto;
   background: var(--color-black);
-  border-radius: 20px;
+  border-radius: var(--radius-m);
   padding: 40px 20px;
   width: 335px;
   max-width: 100vw;
@@ -50,27 +50,25 @@
 }
 
 .modal-close-btn {
+  width: 24px;
+  height: 24px;
+
   position: absolute;
   top: 14px;
   right: 14px;
-  color: #aaa;
-  display: inline-flex;
-  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+
   cursor: pointer;
-  margin-left: auto;
 }
 
 .modal-close-btn .icon {
-  stroke: #ffffff;
-  width: 24px;
-  height: 24px;
-}
-
-.modal-close-btn:hover,
-.modal-close-btn:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+  stroke: var(--color-white);
+  width: 10px;
+  height: 10px;
 }
 
 @keyframes fadeIn {
@@ -122,7 +120,7 @@
   display: flex;
   align-items: center;
   justify-content: start;
-  color: #f4f4f4;
+  color: var(--color-white);
   gap: 2px;
   font-weight: 400;
   font-size: 12px;
@@ -135,6 +133,10 @@
   height: 18px;
   fill: rgba(244, 244, 244, 0.2);
   padding: 2px;
+}
+
+.rating > .icon:first-of-type {
+  margin-left: 2px;
 }
 
 .rating .icon.filled {
@@ -160,7 +162,7 @@
 }
 
 .exercise-detail .card-img {
-  border-radius: 12px;
+  border-radius: var(--radius-xs);
   max-height: 258px;
   width: 100%;
   object-fit: cover;
@@ -223,46 +225,13 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 1.28571;
-  color: #f4f4f4;
+  color: var(--color-white);
 }
 
-@media (min-width: 768px) {
-  .modal-container {
-    width: 708px;
-  }
-
-  .modal .modal-body .card {
-    display: flex;
-  }
-
-  .modal-close-btn .icon {
-    width: 28px;
-    height: 28px;
-  }
-
-  .modal-container {
-    padding: 32px;
-  }
-
-  .exercise-detail .modal-title {
-    font-size: 24px;
-  }
-
-  .exercise-detail .card {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 32px;
-  }
-
-  .exercise-detail .modal-action {
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    margin-top: 64px;
-  }
-
-  .exercise-detail .modal-action .btn {
-    width: auto;
-  }
+.modal__window_rating > .modal-container {
+  max-width: 335px;
+  padding: 20px;
+  width: 100%;
 }
 
 .modal__window_rating form {
@@ -271,7 +240,7 @@
 }
 
 .modal__rating-title {
-  color: rgba(244, 244, 244, 0.40);
+  color: rgba(244, 244, 244, 0.4);
   font-size: 12px;
   line-height: 18px;
   margin-bottom: 8px;
@@ -280,18 +249,30 @@
 
 .modal__rating {
   display: flex;
-  align-items: center;
-  gap: 4px;
+  align-content: center;
+  gap: 2px;
   margin-bottom: 20px;
 }
 
 .modal__rating-value {
-  color: #F4F4F4;
+  color: var(--color-white);
   font-size: 12px;
+  line-height: 1.5;
 }
 
-.modal__rating-star input[type="radio"] {
+.modal__rating-star input[type='radio'] {
   display: none;
+}
+
+.modal__rating-star svg {
+  width: 18px;
+  height: 18px;
+  fill: rgba(244, 244, 244, 0.2);
+  padding: 1px;
+}
+
+.modal__rating-star:first-of-type {
+  margin-left: 3px;
 }
 
 .modal__rating-star label {
@@ -313,9 +294,9 @@
   padding: 8px 14px;
   align-items: center;
   gap: 10px;
-  border-radius: 30px;
-  border: 1px solid #F4F4F4;
-  color: rgba(244, 244, 244, 0.60);
+  border-radius: var(--radius-m);
+  border: 1px solid var(--color-white);
+  color: rgba(244, 244, 244, 0.6);
   background: transparent;
   font-size: 16px;
   font-weight: 400;
@@ -330,7 +311,7 @@
 
 .modal__rating-field.textarea {
   resize: none;
-  border-radius: 15px;
+  border-radius: var(--radius-s);
   height: 93px;
   margin-bottom: 20px;
 }
@@ -345,9 +326,9 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border-radius: 30px;
-  background: #F4F4F4;
-  color: #242424;
+  border-radius: var(--radius-m);
+  background: var(--color-white);
+  color: var(--color-black);
   font-size: 16px;
   line-height: 24px;
   cursor: pointer;
@@ -359,5 +340,55 @@
 
 .modal__rating-submit:hover {
   background-color: rgba(244, 244, 244, 0.6);
-  color: #f4f4f4;
+  color: var(--color-white);
+}
+
+@media (min-width: 768px) {
+  .modal__rating {
+    margin-bottom: 32px;
+  }
+
+  .modal-container {
+    width: 708px;
+    padding: 32px;
+  }
+
+  .modal .modal-body .card {
+    display: flex;
+  }
+
+  .modal-close-btn {
+    width: 28px;
+    height: 28px;
+
+    .modal-close-btn .icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .exercise-detail .modal-title {
+    font-size: 24px;
+  }
+
+  .exercise-detail .card {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 32px;
+  }
+
+  .exercise-detail .modal-action {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    margin-top: 64px;
+  }
+
+  .exercise-detail .modal-action .btn {
+    width: auto;
+  }
+
+  .modal__window_rating > .modal-container {
+    max-width: 430px;
+    padding: 40px;
+  }
 }
