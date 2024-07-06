@@ -1,6 +1,7 @@
 import Modal from './Modal.class.js';
 import { axiosWrapper } from './utils/axiosWrapper.js';
 import storedExcersises from './storedExcersises.js';
+import iconsPack from '../img/icons.svg';
 
 const $axios = new axiosWrapper();
 let modal = null;
@@ -29,7 +30,7 @@ const templates = {
       .map(i => {
         return `
           <svg class="icon${i + 1 <= rating ? ' filled' : ''}">
-            <use href="./img/icons.svg#icon-star"></use>
+            <use href="${iconsPack}#icon-star"></use>
           </svg>`;
       })
       .join('');
