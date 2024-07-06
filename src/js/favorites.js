@@ -1,6 +1,6 @@
 import { capitalizeFirstLetter } from './utils/helpers.js';
-import { lsToggleFavItem } from './exercise-detail';
 import Pagination from './exercises/pagination.js';
+import storedExcersises from './storedExcersises.js';
 
 const emptyMessage = () =>
   `It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.`;
@@ -46,7 +46,6 @@ const store = new Proxy(
   {
     page: 1,
     itemsPerPage: window.innerWidth > 767 ? 10 : 8,
-    favoritesList: JSON?.parse(localStorage.getItem('favorites')) ?? [],
   },
   {
     set(target, property, value) {
@@ -54,16 +53,12 @@ const store = new Proxy(
       if (property === 'page') {
         renderList();
       }
-
-      if (property === 'favoritesList') {
-        localStorage.setItem('favorites', JSON.stringify(value));
-      }
       return true;
     },
   }
 );
 
-const totalPages = () => Math.ceil(store.favoritesList.length / store.itemsPerPage);
+const totalPages = () => Math.ceil(storedExcersises.favoritesList.length / store.itemsPerPage);
 
 const pagination = new Pagination('#exercises-pagination', async page => {
   store.page = page;
@@ -81,30 +76,26 @@ const getPaginatedItems = (list, page, items_per_page) => {
 
 function renderList() {
   let markup = emptyMessage();
-  const items = getPaginatedItems(store.favoritesList, store.page, store.itemsPerPage);
+  const items = getPaginatedItems(storedExcersises.favoritesList, store.page, store.itemsPerPage);
+
   if (items.length) {
     markup = items.map(item => exerciseTemplate(item)).join('');
   }
 
   refs.list.innerHTML = markup;
-
-  pagination.render(store.page, totalPages());
+  if (totalPages() > 1) {
+    pagination.render(store.page, totalPages());
+  }
 }
 
 renderList();
 
 const removeExercise = id => {
-  const itemRef = document.querySelector(`.exercise-card[data-exercise-id="${id}"]`);
+  storedExcersises.favoritesList = storedExcersises.favoritesList.filter(item => item._id !== id);
 
-  itemRef?.remove();
-
-  const exercise = store.favoritesList.find(item => item._id === id) ?? {};
-  lsToggleFavItem(exercise);
-  store.favoritesList = store.favoritesList.filter(item => item._id !== id);
-
-  const items = getPaginatedItems(store.favoritesList, store.page, store.itemsPerPage);
+  const items = getPaginatedItems(storedExcersises.favoritesList, store.page, store.itemsPerPage);
   if (store.page > 1 && items.length === 0) {
-    store.page--;
+    store.page -= 1;
   }
   renderList();
 };
