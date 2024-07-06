@@ -2,28 +2,19 @@
 @import url('./quote-image.css');
 @import url('./quote-peptalk.css');
 
-.quote-wrapper {
+.quote-home-wrapper,
+.quote-favorites-wrapper {
   width: 100%;
+  height: 100%;
 
   margin: 0;
   padding: 0;
 
   display: flex;
-  gap: 20px;
+  gap: calc(var(--spacing-base) * 5);
   flex-direction: column;
   align-items: start;
   justify-content: start;
-}
-
-@media screen and (min-width: 767.99px) {
-  .quote-wrapper {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: start;
-    gap: 32px 16px;
-
-    width: 704px;
-  }
 }
 
 .quote-main-title,
@@ -37,7 +28,7 @@
   align-items: start;
 
   font-weight: 500;
-  font-size: 20px;
+  font-size: calc(var(--spacing-base) * 5);
   line-height: 1;
 
   white-space: nowrap;
@@ -46,8 +37,8 @@
 .quote-main-icon,
 .quote-peptalk-icon {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: var(--spacing-l);
+  height: var(--spacing-l);
   flex-shrink: 0;
 }
 
@@ -60,11 +51,35 @@
   opacity: 0.6;
 }
 
+@media screen and (min-width: 767.99px) {
+  .quote-home-wrapper,
+  .quote-favorites-wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: var(--spacing-l) var(--spacing-m);
+
+    width: 704px;
+  }
+
+  .quote-favorites-wrapper {
+    gap: var(--spacing-m);
+  }
+
+  .quote-favorites-wrapper {
+    width: 704px;
+  }
+}
+
 @media screen and (min-width: 1439.99px) {
-  .quote-wrapper {
+  .quote-home-wrapper {
     width: 444px;
-    gap: 32px;
+    gap: var(--spacing-l);
     flex-direction: column;
     flex-wrap: nowrap;
+  }
+
+  .quote-favorites-wrapper {
+    width: 494px;
   }
 }
