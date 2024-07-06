@@ -1,14 +1,21 @@
-.quote-main {
-  border-radius: var(--radius-m);
-
+.quote-main-home-wrapper,
+.quote-main-favorites-wrapper {
   min-width: 280px;
   max-width: 335px;
+  width: 100%;
+  height: 100%;
+}
+
+.quote-main {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-m);
 
   margin: 0;
   padding: calc(var(--spacing-base) * 5);
 
   display: flex;
-  gap: 16px;
+  gap: var(--spacing-m);
   justify-content: space-between;
   align-items: start;
 
@@ -16,10 +23,24 @@
   color: var(--color-white);
 }
 
+.quote-main-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+  height: 100%;
+}
+
 .quote-main-title-quotes {
   color: var(--color-white);
-  width: 20px;
-  height: 20px;
+  width: calc(var(--spacing-base) * 5);
+  height: calc(var(--spacing-base) * 5);
+}
+
+.quote-main-quote {
+  height: min-content;
+  overflow: auto;
 }
 
 .quote-main-author {
@@ -30,10 +51,16 @@
 }
 
 @media screen and (min-width: 767.99px) {
-  .quote-main {
+  .quote-main-home-wrapper {
     max-width: 400px;
     height: 249px;
+  }
 
+  .quote-main-favorites-wrapper {
+    max-width: 704px;
+  }
+
+  .quote-main {
     padding: calc(var(--spacing-base) * 10);
   }
 
@@ -49,8 +76,12 @@
 }
 
 @media screen and (min-width: 1439.99px) {
-  .quote-main {
+  .quote-main-home-wrapper {
     max-width: 444px;
     height: 242px;
+  }
+
+  .quote-main-favorites-wrapper {
+    max-width: 494px;
   }
 }

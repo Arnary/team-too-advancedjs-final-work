@@ -6,7 +6,7 @@ const emptyMessage = () =>
   `It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.`;
 
 const exerciseTemplate = item => `
-  <div class="exercise-card" data-exercise-id="${item._id}">
+  <div class="exercise-card favorite-card" data-exercise-id="${item._id}">
     <header class="exercise-card-header">
       <span class="exercise-card-title">Workout</span>
       <button class="exercise-card-remove btn" type="button" data-fav-del>

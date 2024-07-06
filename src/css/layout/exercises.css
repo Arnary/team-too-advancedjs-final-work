@@ -242,7 +242,7 @@
   flex-direction: column;
 }
 
-.exercises-quote-container {
+.exercises-quote-container, .favorite-quote-container {
   height: 100%;
 }
 
@@ -255,7 +255,7 @@
 @media screen and (min-width: 1440px) {
   .exercises-container {
     flex-direction: row;
-    justify-content: space-between;
+    gap: 32px;
   }
   .exercises-container .exercises-quote-container {
     order: 1;
@@ -356,14 +356,28 @@
   width: 100%;
   margin-top: 80px;
 }
+
+.favorite-quote-container{
+  margin-bottom: 40px;
+}
+
 @media screen and (min-width: 768px) {
   .exercises-quote-container {
     margin-top: 64px;
+  }
+
+  .favorite-quote-container{
+    margin-bottom: 64px;
   }
 }
 @media screen and (min-width: 1440px) {
   .exercises-quote-container {
     width: 444px;
+    margin-top: 0;
+  }
+
+  .favorite-quote-container {
+    width: 494px;
     margin-top: 0;
   }
 }
@@ -404,4 +418,28 @@
   display: flex;
   height: 100%;
   flex-direction: column;
+}
+
+.favorites-title {
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.35714;
+  color: var(--color-black)
+}
+
+@media screen and (min-width: 768px), screen and (min-width: 1440px) {
+  .favorites-title {
+    margin-bottom: 32px;
+    font-size: 44px;
+    line-height: 1.09091;
+  }
+}
+
+/* @media screen and (min-width: 1440px) {
+  .favorites-title {
+    margin-bottom: 32px;
+    font-size: 44px;
+    line-height: 1.09091;
+  } */
 }
