@@ -1,5 +1,6 @@
 import Modal from './Modal.class.js';
 import { axiosWrapper } from './utils/axiosWrapper.js';
+import storedExcersises from './storedExcersises.js';
 
 const $axios = new axiosWrapper();
 let modal = null;
@@ -99,25 +100,19 @@ const templates = {
   },
 };
 
-const lsToggleFavItem = item => {
-  let favorites_list = JSON.parse(localStorage.getItem('favorites')) ?? [];
-  const itemIndex = favorites_list.findIndex(({ _id }) => _id === item?._id);
-
-  if (itemIndex > -1) {
-    item.isFav = false;
-    favorites_list.splice(itemIndex, 1);
-  } else {
-    item.isFav = true;
-    favorites_list.push(item);
-  }
-
-  localStorage.setItem('favorites', JSON.stringify(favorites_list));
-};
-
 const modalBtnClickHandler = item => {
   return event => {
     if ('favAdd' in event.target.dataset || 'favDel' in event.target.dataset) {
-      lsToggleFavItem(item);
+      item.isFav = !item.isFav;
+
+      let clone = [...storedExcersises.favoritesList];
+      if ('favAdd' in event.target.dataset) {
+        clone.push(item);
+      } else if ('favDel' in event.target.dataset) {
+        clone = clone.filter(i => i._id !== item._id);
+      }
+
+      storedExcersises.favoritesList = clone;
       const actionsRef = modal?.$el.querySelector('.modal-actions');
 
       if (!!actionsRef) {
@@ -142,9 +137,6 @@ const initDetail = async () => {
 
     modal.itemID = id;
 
-    const favorites_list = JSON.parse(localStorage.getItem('favorites')) ?? [];
-    const isFav = favorites_list.findIndex(({ _id }) => _id === id) > -1;
-
     // modal.body = 'Some loader >>>';
     modal.open();
 
@@ -154,9 +146,9 @@ const initDetail = async () => {
         throw new Error();
       }
 
-      exercise.isFav = isFav;
+      exercise.isFav = storedExcersises.favoritesList.findIndex(({ _id }) => _id === id) > -1;
       modal.body = templates.modalContent(exercise);
-      modal.actions = templates.detailActionBtnsTemplate(isFav);
+      modal.actions = templates.detailActionBtnsTemplate(exercise.isFav);
 
       const handler = modalBtnClickHandler(exercise);
       modal.$el.addEventListener('click', handler);
@@ -174,4 +166,4 @@ const initDetail = async () => {
   return { modal };
 };
 
-export { initDetail, lsToggleFavItem };
+export { initDetail };
