@@ -2,13 +2,15 @@ export default class Modal {
   static count = 0;
   #header;
   #body;
+  #actions;
   #className = 'modal';
   onHide = null;
   onOpen = null;
 
-  constructor({ body = '', header = '', className = null } = {}) {
+  constructor({ body = '', header = '', actions = '', className = null } = {}) {
     this.#header = header;
     this.#body = body;
+    this.#actions = actions;
     this.#className += !!className ? ` ${className}` : '';
 
     Modal.count++;
@@ -34,6 +36,9 @@ export default class Modal {
           <div class="modal-body">
             ${this.#body}
           </div>
+          <div class="modal-actions">
+            ${this.#actions}
+          </div>
         </div>
       </div>`;
 
@@ -46,6 +51,14 @@ export default class Modal {
     if (this.$el) {
       const modalBody = this.$el.querySelector('.modal-body');
       modalBody.innerHTML = this.#body;
+    }
+  }
+
+  set actions(newContent) {
+    this.#actions = newContent;
+    if (this.$el) {
+      const modalActions = this.$el.querySelector('.modal-actions');
+      modalActions.innerHTML = this.#actions;
     }
   }
 
@@ -85,6 +98,7 @@ export default class Modal {
     if (typeof this.onOpen === 'function') {
       this.onOpen();
     }
+    document.body.style.overflow = 'hidden';
   }
 
   close() {
@@ -101,6 +115,7 @@ export default class Modal {
           }
           this.removeEvents();
           this.body = '';
+          document.body.style.overflow = 'auto';
         }
       },
       { once: true }

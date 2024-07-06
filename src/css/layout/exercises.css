@@ -93,7 +93,6 @@
   }
 }
 
-
 /* Search form */
 
 .exercises-search-form {
@@ -152,7 +151,20 @@
 .exercises-search-btn {
   position: absolute;
   top: 50%;
-  right: 14px;
+  right: 10px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.exercises-search-clear-btn {
+  position: absolute;
+  top: 50%;
+  right: 34px;
   transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
@@ -163,6 +175,12 @@
 }
 
 .exercises-search-icon {
+  padding: 0;
+  stroke: var(--color-black);
+  fill: var(--color-white);
+}
+
+.exercises-search-clear-icon {
   padding: 0;
   stroke: var(--color-black);
   fill: var(--color-white);
@@ -218,14 +236,13 @@
   }
 }
 
-
 /* exercises grip */
 .exercises-container {
   display: flex;
   flex-direction: column;
 }
 
-.exercises-quote-container {
+.exercises-quote-container, .favorite-quote-container {
   height: 100%;
 }
 
@@ -238,7 +255,7 @@
 @media screen and (min-width: 1440px) {
   .exercises-container {
     flex-direction: row;
-    justify-content: space-between;
+    gap: 32px;
   }
   .exercises-container .exercises-quote-container {
     order: 1;
@@ -247,7 +264,6 @@
     order: 2;
   }
 }
-
 
 /* exercises styles */
 .exercises-categories-list {
@@ -281,6 +297,15 @@
   position: relative;
   overflow: hidden;
   border-radius: 12px;
+}
+
+.exercises-categories-item::before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    background-color: rgba(17,17,17,0.5);
 }
 
 .exercises-categories-item:hover {
@@ -340,9 +365,18 @@
   width: 100%;
   margin-top: 80px;
 }
+
+.favorite-quote-container{
+  margin-bottom: 40px;
+}
+
 @media screen and (min-width: 768px) {
   .exercises-quote-container {
     margin-top: 64px;
+  }
+
+  .favorite-quote-container{
+    margin-bottom: 64px;
   }
 }
 @media screen and (min-width: 1440px) {
@@ -350,15 +384,21 @@
     width: 444px;
     margin-top: 0;
   }
-}
 
+  .favorite-quote-container {
+    width: 494px;
+    margin-top: 0;
+  }
+}
 
 /* pagination styles */
 .pagination {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  margin-top: auto;
 }
 
 .pagination-button {
@@ -381,4 +421,26 @@
   border-radius: 50%;
   border: 1px solid var(--color-black);
   color: var(--color-black);
+}
+
+#exercises-block {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.favorites-title {
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.35714;
+  color: var(--color-black)
+}
+
+@media screen and (min-width: 768px), screen and (min-width: 1440px) {
+  .favorites-title {
+    margin-bottom: 32px;
+    font-size: 44px;
+    line-height: 1.09091;
+  }
 }

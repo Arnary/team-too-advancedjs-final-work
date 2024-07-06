@@ -1,5 +1,6 @@
 import Modal from './Modal.class.js';
 import { axiosWrapper } from './utils/axiosWrapper.js';
+import storedExcersises from './storedExcersises.js';
 
 const $axios = new axiosWrapper();
 let modal = null;
@@ -85,42 +86,34 @@ const templates = {
     return `<div class="card">
         <img class="card-img" src="${gifUrl}" alt="${title}">
         <div class="card-body">
-          <h3 class="modal-title">${title}</h3>
+          <div class="card-header">
+            <h3 class="card-title">${title}</h3>
             ${templates.ratingTemplate(rating)}
-          <hr/>
+          </div>
           <ul class="char-list">
             ${charListTemplate}
           </ul>
-          <hr/>
-          <p>${description}</p>
+          <p class="char-info">${description}</p>
+
         </div>
-      </div>
-      <div class="modal-action">
-        ${templates.detailActionBtnsTemplate(isFav)}
       </div>`;
   },
-};
-
-const lsToggleFavItem = item => {
-  let favorites_list = JSON.parse(localStorage.getItem('favorites')) ?? [];
-  const itemIndex = favorites_list.findIndex(({ _id }) => _id === item?._id);
-
-  if (itemIndex > -1) {
-    item.isFav = false;
-    favorites_list.splice(itemIndex, 1);
-  } else {
-    item.isFav = true;
-    favorites_list.push(item);
-  }
-
-  localStorage.setItem('favorites', JSON.stringify(favorites_list));
 };
 
 const modalBtnClickHandler = item => {
   return event => {
     if ('favAdd' in event.target.dataset || 'favDel' in event.target.dataset) {
-      lsToggleFavItem(item);
-      const actionsRef = modal?.$el.querySelector('.modal-action');
+      item.isFav = !item.isFav;
+
+      let clone = [...storedExcersises.favoritesList];
+      if ('favAdd' in event.target.dataset) {
+        clone.push(item);
+      } else if ('favDel' in event.target.dataset) {
+        clone = clone.filter(i => i._id !== item._id);
+      }
+
+      storedExcersises.favoritesList = clone;
+      const actionsRef = modal?.$el.querySelector('.modal-actions');
 
       if (!!actionsRef) {
         actionsRef.innerHTML = templates.detailActionBtnsTemplate(item.isFav);
@@ -129,22 +122,20 @@ const modalBtnClickHandler = item => {
   };
 };
 
-export default async () => {
+const initDetail = async () => {
   const BASE_URL = 'https://your-energy.b.goit.study/api/exercises/';
   modal = new ExerciseModal({ className: 'exercise-detail' });
 
-  const exerciseList = document.querySelector('.exercise-list');
+  const exerciseList = document.querySelector('#exercises-list');
 
   exerciseList.addEventListener('click', async event => {
     if (!event.target.dataset.exerciseId) {
       return;
     }
+
     const { exerciseId: id } = event.target.dataset;
 
     modal.itemID = id;
-
-    const favorites_list = JSON.parse(localStorage.getItem('favorites')) ?? [];
-    const isFav = favorites_list.findIndex(({ _id }) => _id === id) > -1;
 
     // modal.body = 'Some loader >>>';
     modal.open();
@@ -155,8 +146,9 @@ export default async () => {
         throw new Error();
       }
 
-      exercise.isFav = isFav;
+      exercise.isFav = storedExcersises.favoritesList.findIndex(({ _id }) => _id === id) > -1;
       modal.body = templates.modalContent(exercise);
+      modal.actions = templates.detailActionBtnsTemplate(exercise.isFav);
 
       const handler = modalBtnClickHandler(exercise);
       modal.$el.addEventListener('click', handler);
@@ -173,3 +165,5 @@ export default async () => {
 
   return { modal };
 };
+
+export { initDetail };
