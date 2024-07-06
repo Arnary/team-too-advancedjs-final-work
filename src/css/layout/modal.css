@@ -36,9 +36,11 @@
   padding: 40px 20px;
   width: 335px;
   max-width: 100vw;
-  max-height: 90%;
+  max-height: 98%;
   overflow: hidden;
   animation: slideIn 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-container.hide {
@@ -46,7 +48,10 @@
 }
 
 .modal-body {
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .modal-close-btn {
@@ -67,8 +72,8 @@
 
 .modal-close-btn .icon {
   stroke: var(--color-white);
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 
 @keyframes fadeIn {
@@ -150,15 +155,10 @@
 
 .exercise-detail .card {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
+  flex-grow: 1;
   gap: 20px;
-}
-
-.exercise-detail .card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  height: 100%;
 }
 
 .exercise-detail .card-img {
@@ -166,46 +166,55 @@
   max-height: 258px;
   width: 100%;
   object-fit: cover;
-  /* object-position: bottom; */
+  min-height: 258px;
 }
 
-.exercise-detail hr {
-  width: 100%;
-  height: 1px;
-  margin: 0;
-  border: 0;
-  background: rgba(244, 244, 244, 0.2);
+.exercise-detail .card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.exercise-detail .modal-title {
+.exercise-detail .card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.exercise-detail .card-title {
   color: var(--color-white);
   font-weight: 500;
   font-size: 20px;
   line-height: 1;
 }
 
-.exercise-detail p {
-  color: var(--text-muted);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.28571;
-}
-
-.exercise-detail .modal-action {
+.exercise-detail .modal-actions {
   margin-top: 40px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
-.exercise-detail .modal-action .btn {
+.exercise-detail .modal-actions .btn {
   width: 100%;
+}
+
+.exercise-detail .char-info {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
 }
 
 .exercise-detail .char-list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  border-top: 1px solid rgba(244, 244, 244, 0.2);
+  border-bottom: 1px solid rgba(244, 244, 244, 0.2);
+  padding: 10px 0px;
+  margin: 20px 0;
 }
 
 .exercise-detail .char-item {
@@ -367,7 +376,7 @@
     }
   }
 
-  .exercise-detail .modal-title {
+  .exercise-detail .card-title {
     font-size: 24px;
   }
 
@@ -377,18 +386,22 @@
     gap: 32px;
   }
 
-  .exercise-detail .modal-action {
+  .exercise-detail .modal-actions {
     flex-wrap: nowrap;
     justify-content: flex-end;
     margin-top: 64px;
   }
 
-  .exercise-detail .modal-action .btn {
+  .exercise-detail .modal-actions .btn {
     width: auto;
   }
 
   .modal__window_rating > .modal-container {
     max-width: 430px;
     padding: 40px;
+  }
+
+  .exercise-detail .char-list {
+    padding: 16px 0px;
   }
 }
