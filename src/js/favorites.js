@@ -3,7 +3,7 @@ import Pagination from './exercises/pagination.js';
 import storedExcersises from './storedExcersises.js';
 
 const emptyMessage = () =>
-  `It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.`;
+  `<span class="empty-favorites">It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</span>`;
 
 const exerciseTemplate = item => `
   <li class="exercise-card favorite-card" data-exercise-id="${item._id}">
