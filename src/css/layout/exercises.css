@@ -242,7 +242,7 @@
   flex-direction: column;
 }
 
-.exercises-quote-container {
+.exercises-quote-container, .favorite-quote-container {
   height: 100%;
 }
 
@@ -356,14 +356,28 @@
   width: 100%;
   margin-top: 80px;
 }
+
+.favorite-quote-container{
+  margin-bottom: 40px;
+}
+
 @media screen and (min-width: 768px) {
   .exercises-quote-container {
     margin-top: 64px;
+  }
+
+  .favorite-quote-container{
+    margin-bottom: 64px;
   }
 }
 @media screen and (min-width: 1440px) {
   .exercises-quote-container {
     width: 444px;
+    margin-top: 0;
+  }
+
+  .favorite-quote-container {
+    width: 494px;
     margin-top: 0;
   }
 }
