@@ -2,6 +2,7 @@
 }
 
 .footer {
+    margin-top: 60px;
     background-color: var(--quote-background-color);
 }
 
