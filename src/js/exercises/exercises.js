@@ -47,8 +47,8 @@ export default class Exercises {
 
   #renderExercise(item) {
     return `
-      <div class="exercise-card">
-        <header class="exercise-card-header">
+      <li class="exercise-card">
+        <div class="exercise-card-header">
           <span class="exercise-card-title">Workout</span>
           <span class="exercise-card-rating">${item.rating?.toFixed(1)}</span>
           <svg class="exercise-rating-icon">
@@ -60,7 +60,7 @@ export default class Exercises {
               <use href="./img/icons.svg#icon-arrow"></use>
             </svg>
           </button>
-        </header>
+        </div>
 
         <div class="exercise-card-content">
           <img src="./img/figure.svg" alt="figure" class="exercise-name-icon" />
@@ -69,7 +69,7 @@ export default class Exercises {
           </div>
         </div>
 
-        <footer class="exercise-card-footer">
+        <div class="exercise-card-footer">
           <div class="exercise-card-detail">
             Burned calories: <span class="value">${item.burnedCalories}</span>
           </div>
@@ -79,8 +79,8 @@ export default class Exercises {
           <div class="exercise-card-detail">
             Target: <span class="value">${item.target}</span>
           </div>
-        </footer>
-      </div>
+        </div>
+      </li>
   `;
   }
 }
