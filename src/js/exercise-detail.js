@@ -102,7 +102,6 @@ const templates = {
 const lsToggleFavItem = item => {
   let favorites_list = JSON.parse(localStorage.getItem('favorites')) ?? [];
   const itemIndex = favorites_list.findIndex(({ _id }) => _id === item?._id);
-
   if (itemIndex > -1) {
     item.isFav = false;
     favorites_list.splice(itemIndex, 1);

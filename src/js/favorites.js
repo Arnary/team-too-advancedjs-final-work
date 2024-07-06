@@ -50,7 +50,6 @@ const store = new Proxy(
   },
   {
     set(target, property, value) {
-      console.log(target, property, value);
       target[property] = value;
       if (property === 'page') {
         renderList();
@@ -64,11 +63,6 @@ const totalPages = () => Math.ceil(store.favoritesList.length / store.itemsPerPa
 
 const pagination = new Pagination('#exercises-pagination', async page => {
   store.page = page;
-
-  const btns = document.querySelectorAll('.pagination-button');
-  Array.from(btns).forEach(el => {
-    console.log(el.dataset.page);
-  });
 });
 
 const refs = {
@@ -84,7 +78,6 @@ const getPaginatedItems = (list, page, items_per_page) => {
 function renderList() {
   let markup = emptyMessage();
   const items = getPaginatedItems(store.favoritesList, store.page, store.itemsPerPage);
-  console.log(items, store.favoritesList, store.page, store.itemsPerPage);
   if (items.length) {
     markup = items.map(item => exerciseTemplate(item)).join('');
   }
@@ -96,6 +89,19 @@ function renderList() {
 
 renderList();
 
+const removeExercise = id => {
+  const itemRef = document.querySelector(`.exercise-card[data-exercise-id="${id}"]`);
+  const items = getPaginatedItems(store.favoritesList, store.page, store.itemsPerPage);
+
+  itemRef?.remove();
+  if (store.page > 1 && items.length === 0) {
+    store.page--;
+  }
+
+  store.favoritesList = store.favoritesList.filter(item => item._id !== id);
+  renderList();
+};
+
 refs.list.addEventListener('click', event => {
   if ('favDel' in event.target.dataset) {
     const { exerciseId: id } = event.target.closest('.exercise-card')?.dataset;
@@ -103,16 +109,12 @@ refs.list.addEventListener('click', event => {
       return;
     }
     const exercise = store.favoritesList.find(item => item._id === id);
-    store.favoritesList = store.favoritesList.filter(item => item._id !== id);
-    lsToggleFavItem(exercise);
-    const itemRef = refs.list.querySelector(`.exercise-card[data-exercise-id="${id}"]`);
-    itemRef.remove();
-    const items = getPaginatedItems(store.favoritesList, store.page, store.itemsPerPage);
 
-    if (store.page > 1 && items.length === 0) {
-      store.page--;
+    if (!exercise) {
+      return;
     }
-
-    renderList();
+    removeExercise(id);
   }
 });
+
+export { removeExercise };
