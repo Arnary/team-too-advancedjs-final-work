@@ -270,7 +270,10 @@
 }
 
 .modal__rating-star input[type='radio'] {
-  display: none;
+  display: block;
+  position: absolute;
+  z-index: -100;
+  opacity: 0;
 }
 
 .modal__rating-star.active {
