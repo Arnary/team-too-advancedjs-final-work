@@ -20,10 +20,6 @@ export default class Exercises {
     if (window.innerWidth > 767) {
       this.#limit = 10
     }
-
-    if (window.innerWidth > 1440) {
-      this.#limit = 12
-    }
   }
 
   async load({ filter, category, query }) {
