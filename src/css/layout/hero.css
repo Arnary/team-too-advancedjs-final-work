@@ -1,0 +1,129 @@
+@import '../common/reset.css';
+@import '../common/document.css';
+
+.hidden {
+  display: none;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.hero-image {
+  max-height: 570px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 60px;
+  background: rgb(255, 255, 255);
+}
+
+.hero-header-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tag-items {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* @media only screen and (min-width: 768px) {
+  .tag-items {
+    max-width: 197px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .tag-items {
+    max-width: 197px;
+    max-width: 333px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: right;
+    gap: 8px;
+  }
+} */
+
+.hero-headers {
+  max-width: 639px;
+}
+
+.hero-headers h1 {
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 44px;
+  letter-spacing: -2%;
+  text-align: left;
+}
+
+.hero-headers h2 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -2%;
+  text-align: left;
+}
+
+.hero-extras {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-end;
+  justify-content: right;
+}
+
+.hero-headers {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-extras-picture {
+  display: none;
+}
+
+.hero-tags {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: -2%;
+  display: flex;
+  box-sizing: border-box;
+  border: 1px solid rgb(36, 36, 36);
+  border-radius: 30px;
+  padding: 0 8px;
+}
+
+@media only screen and (min-width: 768px) {
+  .hero-tags {
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .hero-tags {
+    font-size: 16px;
+
+    line-height: 24px;
+    letter-spacing: 0px;
+    width: 86px;
+    height: 32px;
+
+    box-sizing: border-box;
+    border: 1px solid rgb(36, 36, 36);
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+}
