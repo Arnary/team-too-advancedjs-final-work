@@ -305,11 +305,13 @@ const initDetail = async () => {
   const exerciseList = document.querySelector('#exercises-list');
 
   exerciseList.addEventListener('click', async event => {
-    if (!event.target.dataset.exerciseId) {
+    const target = event.target.closest('button');
+
+    if (!target.dataset.exerciseId) {
       return;
     }
 
-    const { exerciseId: id } = event.target.dataset;
+    const { exerciseId: id } = target.dataset;
 
     modal.itemID = id;
 
