@@ -29,7 +29,7 @@ const templates = {
       .map(i => {
         return `
           <svg class="icon${i + 1 <= rating ? ' filled' : ''}">
-            <use href="./img/icons.svg#icon-star"></use>
+            <use href="/icons.svg#icon-star"></use>
           </svg>`;
       })
       .join('');
