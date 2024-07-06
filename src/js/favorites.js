@@ -46,13 +46,17 @@ const store = new Proxy(
   {
     page: 1,
     itemsPerPage: window.innerWidth > 767 ? 10 : 8,
-    favoritesList: JSON.parse(localStorage.getItem('favorites') ?? []),
+    favoritesList: JSON?.parse(localStorage.getItem('favorites')) ?? [],
   },
   {
     set(target, property, value) {
       target[property] = value;
       if (property === 'page') {
         renderList();
+      }
+
+      if (property === 'favoritesList') {
+        localStorage.setItem('favorites', JSON.stringify(value));
       }
       return true;
     },
@@ -91,14 +95,17 @@ renderList();
 
 const removeExercise = id => {
   const itemRef = document.querySelector(`.exercise-card[data-exercise-id="${id}"]`);
-  const items = getPaginatedItems(store.favoritesList, store.page, store.itemsPerPage);
 
   itemRef?.remove();
+
+  const exercise = store.favoritesList.find(item => item._id === id) ?? {};
+  lsToggleFavItem(exercise);
+  store.favoritesList = store.favoritesList.filter(item => item._id !== id);
+
+  const items = getPaginatedItems(store.favoritesList, store.page, store.itemsPerPage);
   if (store.page > 1 && items.length === 0) {
     store.page--;
   }
-
-  store.favoritesList = store.favoritesList.filter(item => item._id !== id);
   renderList();
 };
 
@@ -108,11 +115,7 @@ refs.list.addEventListener('click', event => {
     if (!id) {
       return;
     }
-    const exercise = store.favoritesList.find(item => item._id === id);
 
-    if (!exercise) {
-      return;
-    }
     removeExercise(id);
   }
 });
