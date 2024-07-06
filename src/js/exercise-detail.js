@@ -245,18 +245,18 @@ const templates = {
 };
 
 const lsToggleFavItem = item => {
-  let favorites_list = JSON.parse(localStorage.getItem('favorites')) ?? [];
+  let favorites_list = [...storedExcersises.favoritesList];
   const itemIndex = favorites_list.findIndex(({ _id }) => _id === item?._id);
 
   if (itemIndex > -1) {
     item.isFav = false;
-    favorites_list.splice(itemIndex, 1);
+    favorites_list = favorites_list.filter(i => i._id !== item._id);
   } else {
     item.isFav = true;
     favorites_list.push(item);
   }
 
-  localStorage.setItem('favorites', JSON.stringify(favorites_list));
+  storedExcersises.favoritesList = favorites_list;
 };
 
 const modalBtnClickHandler = item => {
@@ -309,6 +309,8 @@ const initDetail = async () => {
     const target = event.target.closest('button');
 
     if (!target.dataset.exerciseId) {
+      const msg = 'No exercise id found';
+      try {Notify.failure(msg);} catch (e) {alert(msg);}
       return;
     }
 
@@ -322,6 +324,8 @@ const initDetail = async () => {
     try {
       const exercise = await $axios.get(`${BASE_URL}${id}`);
       if (Object.keys(exercise).length === 0) {
+        const msg = 'Exercise not found';
+        try {Notify.failure(msg);} catch (e) {alert(msg);}
         throw new Error();
       }
 
