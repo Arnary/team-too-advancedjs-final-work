@@ -13,16 +13,12 @@ form.addEventListener('submit', async (event) => {
 
     const email = emailInput.value;
 
-    if (isValidEmail(email)) {
-        try {
-            const response = await sendSubscription(email);
-            showSuccessToast(response.message);
-            emailInput.value = '';
-        } catch (error) {
-            handleError(error);
-        }
-    } else {
-        showErrorToast(response.message);
+    try {
+        const response = await sendSubscription(email);
+        showSuccessToast(response.message);
+        emailInput.value = '';
+    } catch (error) {
+        handleError(error);
     }
 });
 
