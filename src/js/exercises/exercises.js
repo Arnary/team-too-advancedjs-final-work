@@ -8,7 +8,7 @@ export default class Exercises {
   #filter;
   #category;
   #query;
-  #limit = 8
+  #limit = 8;
 
   constructor() {
     this.#block = document.getElementById('exercises-block');
@@ -18,7 +18,7 @@ export default class Exercises {
     });
 
     if (window.innerWidth > 767) {
-      this.#limit = 10
+      this.#limit = 10;
     }
   }
 
@@ -47,10 +47,10 @@ export default class Exercises {
 
   #renderExercise(item) {
     return `
-      <div class="exercise-card">
-        <header class="exercise-card-header">
+      <li class="exercise-card">
+        <div class="exercise-card-header">
           <span class="exercise-card-title">Workout</span>
-          <span class="exercise-card-rating">${item.rating}</span>
+          <span class="exercise-card-rating">${item.rating?.toFixed(1)}</span>
           <svg class="exercise-rating-icon">
               <use href="./img/icons.svg#icon-star"></use>
           </svg>
@@ -60,7 +60,7 @@ export default class Exercises {
               <use href="./img/icons.svg#icon-arrow"></use>
             </svg>
           </button>
-        </header>
+        </div>
 
         <div class="exercise-card-content">
           <img src="./img/figure.svg" alt="figure" class="exercise-name-icon" />
@@ -69,7 +69,7 @@ export default class Exercises {
           </div>
         </div>
 
-        <footer class="exercise-card-footer">
+        <div class="exercise-card-footer">
           <div class="exercise-card-detail">
             Burned calories: <span class="value">${item.burnedCalories}</span>
           </div>
@@ -79,8 +79,8 @@ export default class Exercises {
           <div class="exercise-card-detail">
             Target: <span class="value">${item.target}</span>
           </div>
-        </footer>
-      </div>
+        </div>
+      </li>
   `;
   }
 }

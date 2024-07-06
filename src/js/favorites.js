@@ -3,11 +3,11 @@ import Pagination from './exercises/pagination.js';
 import storedExcersises from './storedExcersises.js';
 
 const emptyMessage = () =>
-  `It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.`;
+  `<span class="empty-favorites">It appears that you haven't added any exercises to your favorites yet. To get started, you can add exercises that you like to your favorites for easier access in the future.</span>`;
 
 const exerciseTemplate = item => `
-  <div class="exercise-card favorite-card" data-exercise-id="${item._id}">
-    <header class="exercise-card-header">
+  <li class="exercise-card favorite-card" data-exercise-id="${item._id}">
+    <div class="exercise-card-header">
       <span class="exercise-card-title">Workout</span>
       <button class="exercise-card-remove btn" type="button" data-fav-del>
         <svg class="icon">
@@ -20,7 +20,7 @@ const exerciseTemplate = item => `
           <use href="./img/icons.svg#icon-arrow"></use>
         </svg>
       </button>
-    </header>
+    </div>
 
     <div class="exercise-card-content">
       <img src="./img/figure.svg" alt="figure" class="exercise-name-icon" />
@@ -29,7 +29,7 @@ const exerciseTemplate = item => `
       </div>
     </div>
 
-    <footer class="exercise-card-footer">
+    <div class="exercise-card-footer">
       <div class="exercise-card-detail">
         Burned calories: <span class="value">${item.burnedCalories}</span>
       </div>
@@ -39,8 +39,8 @@ const exerciseTemplate = item => `
       <div class="exercise-card-detail">
         Target: <span class="value">${item.target}</span>
       </div>
-    </footer>
-  </div>`;
+    </div>
+  </li>`;
 
 const store = new Proxy(
   {
