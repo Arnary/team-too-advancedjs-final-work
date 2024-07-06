@@ -255,7 +255,7 @@
 @media screen and (min-width: 1440px) {
   .exercises-container {
     flex-direction: row;
-    justify-content: space-between;
+    gap: 32px;
   }
   .exercises-container .exercises-quote-container {
     order: 1;
