@@ -3,8 +3,8 @@ import { range } from 'lodash';
 export default class Pagination {
   constructor(element, onClickHandler) {
     this.element = document.querySelector(element);
-    this.element.addEventListener('click', (event) => {
-      if (event.target.nodeName !== "BUTTON") {
+    this.element.addEventListener('click', event => {
+      if (event.target.nodeName !== 'BUTTON') {
         return;
       }
       onClickHandler(parseInt(event.target.dataset.page));
@@ -19,7 +19,7 @@ export default class Pagination {
     }
 
     this.element.innerHTML = range(1, totalPages + 1)
-      .map((page) => {
+      .map(page => {
         const active = page === currentPage ? 'active' : '';
         return `
           <button data-page="${page}" class="pagination-button ${active}">
