@@ -1,8 +1,11 @@
 <section class="section exercises">
   <div class="exercises-bar">
     <h2 class="exercises-title">
-      Exercises<span class="exercises-title-separator"><span>/</span></span>
-      <a class="exercises-title-sub">lower legs</a>
+      Exercises
+      <span class="exercises-title-sub hidden">
+        <span class="exercises-title-separator"><span>/</span></span>
+        <span class="exercises-title-sub-text">lower legs</span>
+      </span>
     </h2>
     <div class="exercises-filters">
       <form class="exercises-search-form hidden">
@@ -12,79 +15,56 @@
             <use href="./img/icons.svg#icon-search"></use>
           </svg>
         </button>
+        <button class="exercises-search-clear-btn hidden" type="button">
+          <svg class="exercises-search-clear-icon" width="18" height="18">
+            <use href="./img/icons.svg#icon-clear-search"></use>
+          </svg>
+        </button>
       </form>
-      <ul class="exercises-list">
+      <ul class="exercises-filter-list">
         <li>
-          <button class="exercises-list-btn btnFilters active" type="button">
-            Muscles
-          </button>
+          <button
+            class="exercises-filter-btn active"
+            type="button"
+            data-filter-key="muscles"
+          >Muscles</button>
         </li>
         <li>
-          <button class="exercises-list-btn btnFilters" type="button">
-            Body parts
-          </button>
+          <button
+            class="exercises-filter-btn"
+            type="button"
+            data-filter-key="bodypart"
+          >Body parts</button>
         </li>
         <li>
-          <button class="exercises-list-btn btnFilters" type="button">
-            Equipment
-          </button>
+          <button
+            class="exercises-filter-btn"
+            type="button"
+            data-filter-key="equipment"
+          >Equipment</button>
         </li>
       </ul>
     </div>
   </div>
 
   <div class="exercises-container">
-    <div class="exercises-filters-container">
-      <ul class="exercises-filters-list">
-        <li class="exercises-filters-item">
-          <img class="exercises-filters-item-img" src="https://ftp.goit.study/img/power-pulse/filters/abs_bdi0dw.jpg">
-          <div class="exercises-filters-item-wrapper">
-            <h2 class="exercises-filters-item-title">Muscles</h2>
-            <p class="exercises-filters-item-text">abs</p>
-          </div>
-        </li>
-
-        <li class="exercises-filters-item">
-          <img class="exercises-filters-item-img" src="https://ftp.goit.study/img/power-pulse/filters/biceps_rnrxog.jpg">
-          <div class="exercises-filters-item-wrapper">
-            <h2 class="exercises-filters-item-title">Muscles</h2>
-            <p class="exercises-filters-item-text">biceps</p>
-          </div>
-        </li>
-
-        <li class="exercises-filters-item">
-          <img class="exercises-filters-item-img" src="https://ftp.goit.study/img/power-pulse/filters/pectorals_ihwzsc.jpg">
-          <div class="exercises-filters-item-wrapper">
-            <h2 class="exercises-filters-item-title">Muscles</h2>
-            <p class="exercises-filters-item-text">pectorals</p>
-          </div>
-        </li>
-
-        <li class="exercises-filters-item">
-          <img class="exercises-filters-item-img" src="https://ftp.goit.study/img/power-pulse/filters/serratus_anterior_js6osa.jpg">
-          <div class="exercises-filters-item-wrapper">
-            <h2 class="exercises-filters-item-title">Muscles</h2>
-            <p class="exercises-filters-item-text">serratus anterior</p>
-          </div>
-        </li>
-
-        <li class="exercises-filters-item">
-          <img class="exercises-filters-item-img" src="https://ftp.goit.study/img/power-pulse/filters/lats_zolre8.jpg">
-          <div class="exercises-filters-item-wrapper">
-            <h2 class="exercises-filters-item-title">Muscles</h2>
-            <p class="exercises-filters-item-text">lats</p>
-          </div>
-        </li>
-      </ul>
-      <div class="pagination">
-        <button class="pagination-button">1</button>
-        <button class="pagination-button active">2</button>
-        <button class="pagination-button">3</button>
+    <div class="exercises-categories-container">
+      <div id="exercises-categories-block">
+        <ul id="exercises-categories-list" class="exercises-categories-list">
+        </ul>
+        <div id="exercises-categories-pagination" class="pagination">
+        </div>
+      </div>
+      <div id="exercises-block" class="hidden">
+        <ul id="exercises-list" class="exercises-categories-list">
+        </ul>
+        <div id="exercises-pagination" class="pagination">
+        </div>
       </div>
     </div>
 
     <div class="exercises-quote-container">
-      Place quote block here!
+      <load ="partials/home/quote.html" />
     </div>
   </div>
 </section>

@@ -1,12 +1,13 @@
-import { axiosWrapper } from './utils/axiosWrapper';
+const bodyClasses = document.querySelector('body')?.classList;
 
-const axios = new axiosWrapper();
-const params = { bodypart: 'cardio', page: 1, limit: 10 };
+if (bodyClasses.contains('index')) {
+  import('./exercises.js');
+} else if (bodyClasses.contains('favorites')) {
+  import('./favorites.js');
+}
 
-axios
-  .get('exercises', params)
-  .then(res => console.log(res))
-  .catch(error => {
-    const errorDescription = axios.describeError(error);
-    console.log(errorDescription);
-  });
+import { initDetail } from './exercise-detail';
+// ExerciseDetail
+
+//
+initDetail();
