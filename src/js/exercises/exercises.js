@@ -8,7 +8,7 @@ export default class Exercises {
   #filter;
   #category;
   #query;
-  #limit = 8
+  #limit = 8;
 
   constructor() {
     this.#block = document.getElementById('exercises-block');
@@ -18,7 +18,7 @@ export default class Exercises {
     });
 
     if (window.innerWidth > 767) {
-      this.#limit = 10
+      this.#limit = 10;
     }
   }
 
@@ -50,7 +50,7 @@ export default class Exercises {
       <div class="exercise-card">
         <header class="exercise-card-header">
           <span class="exercise-card-title">Workout</span>
-          <span class="exercise-card-rating">${item.rating}</span>
+          <span class="exercise-card-rating">${item.rating?.toFixed(1)}</span>
           <svg class="exercise-rating-icon">
               <use href="./img/icons.svg#icon-star"></use>
           </svg>
