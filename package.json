@@ -1,11 +1,11 @@
 {
-  "name": "advancedjs-final-work",
+  "name": "team-too-advancedjs-final-work",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/advancedjs-final-work/",
+    "build": "vite build --base=/team-too-advancedjs-final-work/",
     "preview": "vite preview"
   },
   "devDependencies": {
