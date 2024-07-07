@@ -8,6 +8,7 @@ export default class Pagination {
         return;
       }
       onClickHandler(parseInt(event.target.dataset.page));
+      this.scrollToParent();
     });
   }
 
@@ -28,5 +29,12 @@ export default class Pagination {
         `;
       })
       .join('');
+  }
+
+  scrollToParent() {
+    const wrapper = this.element.closest('section');
+    wrapper.scrollIntoView({
+      behavior: 'smooth',
+    });
   }
 }

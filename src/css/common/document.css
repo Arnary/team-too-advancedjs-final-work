@@ -36,40 +36,24 @@ body {
   color: var(--color-black);
 }
 
-.section {
-  width: 100vw;
-  min-width: var(--width-mobile);
-  max-width: 1440px;
-  height: min-content;
-
+.container {
+  max-width: 375px;
+  padding: 0 20px;
   margin: 0 auto;
-  padding: calc(var(--spacing-base) * 5);
-}
-
-
-@media screen and (min-width: 375px) {
-  .section {
-    max-width: 375px;
-  }
 }
 
 @media screen and (min-width: 768px) {
-  .section {
+  .container {
     max-width: 768px;
+    padding: 0 32px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .section {
+  .container {
     max-width: 1440px;
+    padding: 0 32px;
   }
-}
-
-.header {
-  height: calc(52 + var(--spacing-base) * 7 * 2);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 .btn {

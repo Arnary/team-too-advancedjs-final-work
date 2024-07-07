@@ -40,7 +40,11 @@ export default class Exercises {
   async #loadExercises(page) {
     const { totalPages, results } = await getExercises(this.#filter, this.#category, this.#query, page, this.#limit);
 
-    this.#list.innerHTML = results.map(this.#renderExercise).join('');
+    if (!results?.length) {
+      this.#list.innerHTML = this.#emptyResults();
+    } else {
+      this.#list.innerHTML = results.map(this.#renderExercise).join('');
+    }
 
     this.#pagination.render(page, totalPages);
   }
@@ -82,6 +86,10 @@ export default class Exercises {
         </div>
       </li>
   `;
+  }
+
+  #emptyResults() {
+    return `<span class="empty-message">No matching exercises found. Please try adjusting your search criteria.</span>`;
   }
 }
 

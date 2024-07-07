@@ -75,7 +75,7 @@
   font-size: 14px;
   line-height: 1.29;
 
-  overflow: scroll;
+  overflow: auto;
 }
 
 @media screen and (min-width: 767.99px) {
@@ -116,9 +116,5 @@
   .quote-peptalk-favorites-wrapper {
     min-width: unset;
     max-width: 239px;
-  }
-
-  .quote-peptalk-description {
-    overflow: hidden;
   }
 }

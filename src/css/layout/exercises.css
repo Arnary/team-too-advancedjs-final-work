@@ -1,3 +1,7 @@
+.exercises-section {
+  padding-bottom: 80px;
+}
+
 .exercises-bar {
   display: flex;
   flex-direction: column;
@@ -5,12 +9,20 @@
   margin-bottom: 20px;
 }
 @media screen and (min-width: 768px) {
+  .exercises-section {
+    padding-bottom: 100px;
+  }
+
   .exercises-bar {
     row-gap: 32px;
     margin-bottom: 32px;
   }
 }
 @media screen and (min-width: 1440px) {
+  .exercises-section {
+    padding-bottom: 132px;
+  }
+
   .exercises-bar {
     flex-direction: row;
     row-gap: 0;
@@ -240,7 +252,6 @@
 .exercises-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 60px;
 }
 
 .exercises-quote-container,
@@ -288,18 +299,11 @@
     margin-bottom: 32px;
     position: relative;
   }
-
-  .exercises-container {
-    margin-bottom: 80px;
-  }
 }
+
 @media screen and (min-width: 1440px) {
   .exercises-categories-list {
     max-width: 900px;
-  }
-
-  .exercises-container {
-    margin-bottom: 102px;
   }
 }
 
@@ -325,10 +329,6 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 767px) {
-  .exercises-categories-item {
-  }
-}
 @media screen and (min-width: 768px) {
   .exercises-categories-item {
     flex-basis: calc((100% - 30px) / 3);
