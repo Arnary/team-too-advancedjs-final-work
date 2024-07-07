@@ -300,6 +300,7 @@
     position: relative;
   }
 }
+
 @media screen and (min-width: 1440px) {
   .exercises-categories-list {
     max-width: 900px;
@@ -328,10 +329,6 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 767px) {
-  .exercises-categories-item {
-  }
-}
 @media screen and (min-width: 768px) {
   .exercises-categories-item {
     flex-basis: calc((100% - 30px) / 3);
