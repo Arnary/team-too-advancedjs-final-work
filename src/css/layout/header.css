@@ -27,10 +27,6 @@ header {
     padding: 24px 0 100px;
   }
 
-  .header-container {
-    padding: 24px 0 100px;
-  }
-
   .header__logo {
     margin-right: 103px;
   }
@@ -39,10 +35,6 @@ header {
 @media screen and (min-width: 1440px) {
   header {
     padding: 28px 0 96px;
-  }
-
-  .header-container {
-    padding-top: 28px;
   }
 
   .header__logo {
