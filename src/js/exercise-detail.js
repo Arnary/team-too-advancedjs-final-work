@@ -1,8 +1,7 @@
 import Modal from './Modal.class.js';
-import { Notify } from 'notiflix';
+import { izi } from './utils/iziToast.js';
 import { axiosWrapper } from './utils/axiosWrapper.js';
 import storedExcersises from './storedExcersises.js';
-
 
 const $axios = new axiosWrapper();
 let modal = null;
@@ -129,7 +128,7 @@ class RatingModal extends Modal {
   setRating(stars, index, ratingValue) {
     stars.forEach((star, i) => {
       star.classList.toggle('active', i <= index);
-      star.querySelector('input').checked = (i === index);
+      star.querySelector('input').checked = i === index;
     });
     ratingValue.textContent = (index + 1).toFixed(1);
   }
@@ -147,10 +146,10 @@ class RatingModal extends Modal {
         email,
         review: comment
       });
-      try {Notify.success('Rating submitted successfully');} catch (e) {console.log('Rating submitted successfully');}
+      izi.Success('Rating submitted successfully');
       this.close();
     } catch (error) {
-      try {Notify.failure(`Error submitting rating: ${$axios.describeError(error)}`);} catch (e) {console.log(`Error submitting rating: ${$axios.describeError(error)}`);}
+      izi.Error(`Error submitting rating: ${$axios.describeError(error)}`);
     }
   }
 
@@ -310,8 +309,6 @@ const initDetail = async () => {
     const target = event.target.closest('button');
 
     if (!target.dataset.exerciseId) {
-      const msg = 'No exercise id found';
-      try {Notify.failure(msg);} catch (e) {alert(msg);}
       return;
     }
 
@@ -325,8 +322,7 @@ const initDetail = async () => {
     try {
       const exercise = await $axios.get(`${BASE_URL}${id}`);
       if (Object.keys(exercise).length === 0) {
-        const msg = 'Exercise not found';
-        try {Notify.failure(msg);} catch (e) {alert(msg);}
+        izi.Error('Exercise not found');
         throw new Error();
       }
 
