@@ -15,47 +15,35 @@
   align-items: flex-start;
   justify-content: center;
   gap: 20px;
+  margin-bottom: 20px;
 }
 
-@media only screen and (min-width: 1280px) {
+.hero-headers {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 639px;
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 1440px) {
   .hero-container {
     flex-direction: column;
   }
 
   .hero-header-section {
+    position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
   }
 
-  .hero-headers {
-    order: 1;
-    flex: 1;
-  }
-
   .hero-extras {
-    order: 2;
-    flex: 1;
-  }
-
-  .hero-image {
-    order: 3;
-    width: 100%;
-  }
-}
-
-@media only screen and (max-width: 1279px) {
-  .hero-headers {
-    order: 1;
-  }
-
-  .hero-image {
-    order: 2;
-  }
-
-  .hero-extras {
-    order: 3;
+    max-width: 197px;
+    position: absolute;
+    top: 20px;
+    left: 1202px;
   }
 }
 
@@ -82,12 +70,20 @@
 }
 
 @media only screen and (min-width: 768px) {
+  .hero-container {
+    margin-bottom: 44px;
+  }
+
+  .hero-headers {
+    margin-bottom: 32px;
+  }
+
   .tag-items {
     justify-content: end;
   }
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1440px) {
   .tag-items {
     max-width: 197px;
     display: flex;
@@ -96,10 +92,6 @@
     align-items: center;
     gap: 8px;
   }
-}
-
-.hero-headers {
-  max-width: 639px;
 }
 
 .hero-header-top {
@@ -122,7 +114,7 @@
   }
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1440px) {
   .hero-header-top {
     font-size: 74px;
     line-height: 1;
@@ -150,7 +142,7 @@
   }
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1440px) {
   .hero-header-bottom {
     font-size: 18px;
     line-height: 1.33333;
@@ -167,17 +159,11 @@
   justify-content: right;
 }
 
-.hero-headers {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 .hero-extras-picture {
   display: none;
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1440px) {
   .hero-extras-picture {
     display: block;
     border-radius: 20px;
@@ -188,25 +174,22 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 18px;
-  letter-spacing: 2%;
   display: flex;
   box-sizing: border-box;
   border: 1px solid rgb(36, 36, 36);
   border-radius: 30px;
-  padding: 0 8px;
+  padding: 0 12px;
+  height: 26px;
+  align-items: center;
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1440px) {
   .hero-tags {
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0px;
-    width: 86px;
     height: 32px;
-    box-sizing: border-box;
-    border: 1px solid rgb(36, 36, 36);
     border-radius: 30px;
-    align-items: center;
     justify-content: center;
+    padding: 0 15px
   }
 }
