@@ -240,6 +240,7 @@
 .exercises-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 60px;
 }
 
 .exercises-quote-container,
@@ -287,11 +288,18 @@
     margin-bottom: 32px;
     position: relative;
   }
+
+  .exercises-container {
+    margin-bottom: 80px;
+  }
 }
 @media screen and (min-width: 1440px) {
   .exercises-categories-list {
     max-width: 900px;
-    /* margin-left: auto; */
+  }
+
+  .exercises-container {
+    margin-bottom: 102px;
   }
 }
 
