@@ -26,11 +26,13 @@
 
 
 
+    
     <script type="module" crossorigin src="/advancedjs-final-work/commonHelpers2.js"></script>
     <link rel="modulepreload" crossorigin href="/advancedjs-final-work/assets/vendor-833ab380.js">
-    <link rel="modulepreload" crossorigin href="/advancedjs-final-work/assets/burger-0c5ec441.js">
-    <link rel="stylesheet" href="/advancedjs-final-work/assets/burger-ad7d6101.css">
+    <link rel="modulepreload" crossorigin href="/advancedjs-final-work/assets/burger-7f798d78.js">
+    <link rel="stylesheet" href="/advancedjs-final-work/assets/burger-fcc46ce4.css">
     <link rel="stylesheet" href="/advancedjs-final-work/assets/vendor-e5212ee8.css">
+    <link rel="stylesheet" href="/advancedjs-final-work/assets/index-e887e80b.css">
   </head>
   <body class="index">
     <div class="container">
@@ -123,13 +125,49 @@
     </div>
   </div>
 </div>
-    <section class="section hero">
-  <div>
-    <h1 class="hero-text">Hero text</h1>
-    <p class="hero-description">hero description</p>
-  </div>
+    <section class="section">
+  <div class="hero-container">
+    <div class="hero-header-section">
+      <div class="hero-headers">
+        <h1 class="hero-header-top">
+          <svg class="header-top-sun" width="38" height="38">
+            <use href="/advancedjs-final-work/assets/sprite-ea467297.svg#icon-sun"></use>
+          </svg>
+          Get <i>Body</i> in shape, Stay healthy
+        </h1>
+        <h2 class="hero-header-bottom">Transform your physique and embrace a healthier lifestyle with our comprehensive fitness and nutrition support.</h2>
+      </div>
 
-  <img class="hero-image" src="#" alt="hero image" />
+      <div class="hero-image">
+        <picture>
+          <!-- Desktop screen -->
+          <source media="(min-width: 1440px)" srcset="../../../img/hero/bg-desk.jpg 1x, ../../../img/hero/bg-desk@2x.jpg 2x" />
+          <!-- Tablet screen -->
+          <source media="(min-width: 768px)" srcset="../../../img/hero/bg-tab.jpg 1x, ../../../img/hero/bg-tab@2x.jpg 2x" />
+          <!-- Mobile screen -->
+          <source media="(max-width: 767px)" srcset="../../../img/hero/bg-mob.jpg 1x, ../../../img/hero/bg-mob@2x.jpg 2x" />
+          <img class="hero-picture" src="../../../img/hero/bg-desk.jpg" alt="Image with workout" height="350" width="1400" />
+        </picture>
+      </div>
+      <div class="hero-extras">
+        <picture>
+          <!-- Desktop screen -->
+          <source media="(min-width: 1200px)" srcset="../../../img/hero/hashtag-img.jpg 1x, ../../../img/hero/hashtag-img@2x.jpg 2x" />
+          <!-- Tablet screen -->
+          <source media="(min-width: 768px)" srcset="../../../img/hero/hashtag-img.jpg 1x, ../../../img/hero/hashtag-img@2x.jpg 2x" />
+          <!-- Mobile screen -->
+          <source media="(max-width: 767px)" srcset="../../../img/hero/hashtag-img.jpg 1x, ../../../img/hero/hashtag-img@2x.jpg 2x" />
+          <img class="hero-extras-picture" src="../../../img/hero/hashtag-img.jpg" alt="Tags Illustration" width="168" height="100" />
+        </picture>
+        <ul class="tag-items">
+          <li class="hero-tags">#Sport</li>
+          <li class="hero-tags">#Healthy</li>
+          <li class="hero-tags">#Workout</li>
+          <li class="hero-tags">#Diet</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
     <section class="section exercises">
