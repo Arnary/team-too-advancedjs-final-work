@@ -57,8 +57,7 @@ const templates = {
         <svg class="icon">
           <use href="./img/icons.svg#icon-${icon}"></use>
         </svg>
-      </button>
-      <button data-rating type="button" class="btn dark">Give a rating</button>`;
+      </button>`;
   },
   modalContent: data => {
     const { gifUrl, name, rating, description, isFav } = data;
@@ -132,7 +131,7 @@ const initDetail = async () => {
   exerciseList.addEventListener('click', async event => {
     const target = event.target.closest('button');
 
-    if (!target.dataset.exerciseId) {
+    if (!target || !target.dataset.exerciseId) {
       return;
     }
 
