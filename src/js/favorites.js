@@ -82,6 +82,8 @@ function renderList() {
 
   if (items.length) {
     markup = items.map(item => exerciseTemplate(item)).join('');
+  } else {
+    listRef.classList.add('empty');
   }
 
   listRef.innerHTML = markup;

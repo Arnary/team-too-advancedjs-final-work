@@ -19,7 +19,7 @@
     max-width: 442px;
   }
 
-  .favorites #exercises-list {
+  .favorites #exercises-list:not(.empty) {
     max-height: 500px;
     overflow-y: auto;
   }
