@@ -46,6 +46,7 @@ const store = new Proxy(
   {
     page: 1,
     itemsPerPage: window.innerWidth > 767 ? 10 : 8,
+    showPagination: window.innerWidth < 1140,
   },
   {
     set(target, property, value) {
@@ -58,47 +59,51 @@ const store = new Proxy(
   }
 );
 
+const listRef = document.querySelector('#exercises-list');
 const totalPages = () => Math.ceil(storedExcersises.favoritesList.length / store.itemsPerPage);
 
 const pagination = new Pagination('#exercises-pagination', async page => {
   store.page = page;
 });
 
-const refs = {
-  list: document.querySelector('#exercises-list'),
-};
+const getPaginatedItems = () => {
+  if (window.innerWidth > 1140) {
+    return storedExcersises.favoritesList;
+  }
 
-const getPaginatedItems = (list, page, items_per_page) => {
-  const start = (page - 1) * items_per_page;
-  const end = start + items_per_page;
-  return list.slice(start, end) ?? [];
+  const start = (store.page - 1) * store.itemsPerPage;
+  const end = start + store.itemsPerPage;
+  return storedExcersises.favoritesList.slice(start, end) ?? [];
 };
 
 function renderList() {
   let markup = emptyMessage();
-  const items = getPaginatedItems(storedExcersises.favoritesList, store.page, store.itemsPerPage);
+  const items = getPaginatedItems();
 
   if (items.length) {
     markup = items.map(item => exerciseTemplate(item)).join('');
   }
 
-  refs.list.innerHTML = markup;
-  pagination.render(store.page, totalPages());
-}
+  listRef.innerHTML = markup;
 
-renderList();
+  if (store.showPagination) {
+    pagination.render(store.page, totalPages());
+  }
+}
 
 const removeExercise = id => {
   storedExcersises.favoritesList = storedExcersises.favoritesList.filter(item => item._id !== id);
 
-  const items = getPaginatedItems(storedExcersises.favoritesList, store.page, store.itemsPerPage);
+  const items = getPaginatedItems();
   if (store.page > 1 && items.length === 0) {
     store.page -= 1;
   }
   renderList();
 };
 
-refs.list.addEventListener('click', event => {
+renderList();
+
+listRef.addEventListener('click', event => {
   if ('favDel' in event.target.dataset) {
     const { exerciseId: id } = event.target.closest('.exercise-card')?.dataset;
     if (!id) {

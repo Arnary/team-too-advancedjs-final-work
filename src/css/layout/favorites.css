@@ -1,0 +1,38 @@
+.favorites-title {
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.35714;
+  color: var(--color-black);
+}
+
+@media screen and (min-width: 768px), screen and (min-width: 1440px) {
+  .favorites-title {
+    margin-bottom: 32px;
+    font-size: 44px;
+    line-height: 1.09091;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .exercise-card {
+    max-width: 442px;
+  }
+
+  .favorites #exercises-list {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .favorite-card {
+    max-width: 405px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .favorites .exercise-card {
+    --items: 2;
+    flex-basis: calc((100% - 16px * (var(--items) - 1)) / var(--items));
+    max-width: 405px;
+  }
+}
