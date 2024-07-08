@@ -55,7 +55,7 @@ export default class Categories {
   #renderFilter({ filter, name, imgURL }) {
     return `
         <li class="exercises-categories-item" data-name="${name}" data-filter="${filter}">
-          <img class="exercises-categories-item-img" src="${imgURL}">
+          <img class="exercises-categories-item-img" src="${imgURL}" alt="${name}">
           <div class="exercises-categories-item-wrapper">
             <h2 class="exercises-categories-item-title">${capitalizeFirstLetter(name)}</h2>
             <p class="exercises-categories-item-text">${filter}</p>
